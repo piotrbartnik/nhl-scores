@@ -15,3 +15,17 @@ xhttpNHL.onreadystatechange = function () {
 };
 xhttpNHL.open("GET", `https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlDateDay}`, true);
 xhttpNHL.send();
+
+let nbaDateDay = '2019-04-23'
+
+let xhttpNBA = new XMLHttpRequest();
+xhttpNBA.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    let responseNBA = JSON.parse(this.responseText);
+   
+      console.log(responseNBA)
+    
+  }
+};
+xhttpNBA.open("GET", `https://stats.nba.com/stats/scoreboard?DayOffset=0&GameDate=${nbaDateDay}&LeagueID=00`, true);
+xhttpNBA.send();
