@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ScoreSquare.css'
+import classes from './ScoreSquare.module.css'
 
 class ScoreSquare extends Component {
 
@@ -10,7 +10,7 @@ class ScoreSquare extends Component {
       textAlign: 'center'
     };
     return (
-      <div className="Square" style={pStyle}> 
+      <div className={classes.Square} style={pStyle}> 
         {this.props.teamOne} - {this.props.scoreOne}: {this.props.scoreTwo} - {this.props.teamTwo}
       </div>
     );
