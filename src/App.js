@@ -11,13 +11,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    var that = this;
+
     let nhlDateDay = '2019-01-02';
     let prepareGames = [];
-    let xhttpNHL = new XMLHttpRequest();
-    xhttpNHL.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        let responseNHL = JSON.parse(this.responseText);
+
+    fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlDateDay}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        let responseNHL = data;
         console.log(`number of games that day is ${responseNHL.dates[0].games.length}`)
         for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
           let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
@@ -26,12 +29,8 @@ class App extends Component {
           let scoreTwo = responseNHL.dates[0].games[i].teams.home.score;
           prepareGames[i] = [[teamOne, scoreOne], [teamTwo, scoreTwo]];
         }
-        that.setState({ games: prepareGames })
-      }
-    };
-
-    xhttpNHL.open("GET", `https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlDateDay}`, true);
-    xhttpNHL.send();
+        this.setState({ games: prepareGames });
+      });
   }
 
   render() {
