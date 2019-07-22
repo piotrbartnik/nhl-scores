@@ -13,7 +13,7 @@ class App extends Component {
   componentDidMount() {
     var that = this;
     let nhlDateDay = '2019-01-02';
-    let prepareGames = {};
+    let prepareGames = [];
     let xhttpNHL = new XMLHttpRequest();
     xhttpNHL.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
@@ -25,9 +25,9 @@ class App extends Component {
           let scoreOne = responseNHL.dates[0].games[i].teams.away.score;
           let teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
           let scoreTwo = responseNHL.dates[0].games[i].teams.away.score;
-          prepareGames[i] = { [teamOne]: scoreOne, [teamTwo]: scoreTwo };
+          prepareGames[i] = [[teamOne, scoreOne], [teamTwo, scoreTwo]];
         }
-        that.setState({ games: prepareGames })
+        that.setState({games: [prepareGames]})
       }
     };
 
@@ -39,6 +39,7 @@ class App extends Component {
     console.log(this.state.games);
     return (
       <div className="App">
+        {this.state.games.map((games, i) => (<ScoreSquare key={i} teamOne={games[0][0][0]} scoreOne={games[0][0][1]}  teamTwo={games[0][1 ][1]} scoreTwo={games[0][1][0]}/>))}
       </div>
     );
   }

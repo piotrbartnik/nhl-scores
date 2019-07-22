@@ -6,7 +6,7 @@ class ScoreSquare extends Component {
   render() {
     return (
       <div>
-        ScoreSquare
+        {this.props.teamOne} - {this.props.scoreOne}: {this.props.scoreTwo} - {this.props.teamTwo}
       </div>
     );
   }
