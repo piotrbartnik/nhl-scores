@@ -1,0 +1,19 @@
+{
+  "name": "nhl-scores",
+  "version": "1.0.0",
+  "description": "NHL Scores From NHL API",
+  "main": "apitest.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piotrbartnik/nhl-scores.git"
+  },
+  "author": "Piotr Bartnik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/piotrbartnik/nhl-scores/issues"
+  },
+  "homepage": "https://github.com/piotrbartnik/nhl-scores#readme"
+}
