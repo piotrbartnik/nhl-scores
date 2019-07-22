@@ -26,7 +26,7 @@ class App extends Component {
           let scoreTwo = responseNHL.dates[0].games[i].teams.home.score;
           prepareGames[i] = [[teamOne, scoreOne], [teamTwo, scoreTwo]];
         }
-        that.setState({games: prepareGames})
+        that.setState({ games: prepareGames })
       }
     };
 
@@ -38,7 +38,7 @@ class App extends Component {
     console.log(this.state.games.length);
     return (
       <div className="App">
-        {this.state.games.map((games, i) => (<ScoreSquare key={i} teamOne={games[0][0]} scoreOne={games[0][1]}  teamTwo={games[1][0]} scoreTwo={games[1][1]}/>))}
+        {this.state.games.map((games, i) => (<ScoreSquare key={i} teamOne={games[0][0]} scoreOne={games[0][1]} teamTwo={games[1][0]} scoreTwo={games[1][1]} />))}
       </div>
     );
   }
