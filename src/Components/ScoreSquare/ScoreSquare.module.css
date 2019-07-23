@@ -3,4 +3,10 @@
   height: 50px;
   background-color: pink;
   margin: 20px;
+  height: 208px;
+  width: 208px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

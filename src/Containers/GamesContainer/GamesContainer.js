@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ScoreSquare from '../../Components/ScoreSquare/ScoreSquare';
+import classes from './GamesContainer.css'
 
 class GamesContainer extends Component {
   constructor() {
@@ -35,7 +36,7 @@ class GamesContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className={classes.GamesContainer}>
         {this.state.games.map((games, i) => (<ScoreSquare key={i} teamOne={games[0][0]} scoreOne={games[0][1]} teamTwo={games[1][0]} scoreTwo={games[1][1]} />))}
       </div>
     );
