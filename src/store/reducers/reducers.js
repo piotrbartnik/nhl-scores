@@ -11,5 +11,7 @@ const setDate = (state = initialState, action) => {
         ...state,
         date: action.date
       }
+    default:
+        return state
   }
 }
