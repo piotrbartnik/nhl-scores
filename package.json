@@ -25,18 +25,16 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.2",
     "css-loader": "^1.0.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "jest": "^24.8.0",
     "react": "^16.8.6",
+    "react-calendar": "^2.19.0",
     "react-dom": "^16.8.6",
     "redux": "^4.0.4",
     "style-loader": "^0.23.0",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.8"
-  },
-  "dependencies": {
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
-    "react-calendar": "^2.19.0"
+    "webpack-dev-server": "^3.7.2"
   }
 }
