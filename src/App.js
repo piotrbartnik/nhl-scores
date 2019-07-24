@@ -8,9 +8,9 @@ class App extends Component {
     date: new Date(),
   }
 
-  clicked = () => console.log(this.state.date)
+  clicked = () => console.log(new Date(this.state.date).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2'));
  
-  onChange = date => this.setState({ date })
+  onChange = date => this.setState({ date });
   render() {
     return (<div>`
       <Calendar
