@@ -16,4 +16,4 @@ const setDate = (state = initialState, action) => {
   }
 }
 
-export default reducer
+export default setDate

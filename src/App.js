@@ -3,10 +3,15 @@ import "./App.css";
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import Calendar from 'react-calendar';
 
+import { createStore } from 'redux';
+import setDate from './store/reducers/reducer';
+
 class App extends Component {
   state = {
     date: new Date()
   }
+
+  clicked = () => console.log(this.state.date)
 
   // onChange = date => {
   //   let clickedDate = new Date(date).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2');
