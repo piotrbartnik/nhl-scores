@@ -6,16 +6,7 @@ import classes from './GamesContainer.css'
 
 
 class GamesContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      games: []
-    }
-  }
-
-
-
-
+  
   render() {
     return (
       <div className={classes.GamesContainer}>

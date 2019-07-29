@@ -14,7 +14,10 @@ class App extends Component {
     games: []
   }
 
-  // clicked = () => console.log(this.state.date)
+  clicked = () => {
+    const clickedDate = new Date(this.state.date).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
+    this.getGames(clickedDate);
+  }
 
   getGames = (games) => {
     let nhlDateDay = games;
@@ -39,8 +42,6 @@ class App extends Component {
         } else {
           this.setState({ games: [] });
         }
-        console.log(prepareGames)
-
       });
   }
 
@@ -64,16 +65,12 @@ class App extends Component {
 
   render() {
     return (<div>
-      {/* <Calendar
+      <Calendar
         onChange={this.onChange}
         value={this.state.date}
-        onClick={this.clicked()}
-      /> */}
+        onClickDay={this.clicked}
+      />
       <GamesContainer games={this.state.games} />
-      <br />
-      <div>
-        <ChangeDate randomDate={this.state.randomDate} changeDateFunc={this.changeDateFunc} />
-      </div>
     </div>
     );
   }
