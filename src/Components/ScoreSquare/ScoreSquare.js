@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classes from './ScoreSquare.module.css';
+// import image from '../../assets/images/logos.png'
 
 class ScoreSquare extends Component {
 

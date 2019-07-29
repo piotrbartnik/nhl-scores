@@ -13,14 +13,18 @@ module.exports = {
         options: { presets: ["@babel/env"] }
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader?modules"]
+        test: /\.(s*)css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader?modules', 'sass-loader']
+        })
       },
       {
-        test: /\.(png|jpg)$/,
-        loader: 'url-loader'
-      },
-      
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader'
+        ]
+      }
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
