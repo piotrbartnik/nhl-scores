@@ -10,7 +10,7 @@ import setDate from './store/reducers/reducer';
 class App extends Component {
   state = {
     date: new Date(),
-    randomDate: '2018-7-5',
+    randomDate: '2018-1-1',
     games: []
   }
 
@@ -36,7 +36,9 @@ class App extends Component {
             let scoreOne = responseNHL.dates[0].games[i].teams.away.score;
             let teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
             let scoreTwo = responseNHL.dates[0].games[i].teams.home.score;
-            prepareGames[i] = [[teamOne, scoreOne], [teamTwo, scoreTwo]];
+            let teamOneId = responseNHL.dates[0].games[i].teams.away.team.id;
+            let teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id;
+            prepareGames[i] = [[teamOne, scoreOne, teamOneId], [teamTwo, scoreTwo, teamTwoId]];
           } 
           this.setState({ games: prepareGames });
         } else {
