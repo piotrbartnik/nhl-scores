@@ -10,11 +10,35 @@ import setDate from './store/reducers/reducer';
 class App extends Component {
   state = {
     date: new Date(),
-    randomDate: 'test2'
+    randomDate: '2019-01-01',
+    games: []
   }
 
-  clicked = () => console.log(this.state.date)
+  // clicked = () => console.log(this.state.date)
 
+
+  componentDidMount() {
+
+    let nhlDateDay = this.state.randomDate;
+    let prepareGames = [];
+
+    fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlDateDay}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        let responseNHL = data;
+        console.log(`number of games that day is ${responseNHL.dates[0].games.length}`)
+        for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
+          let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
+          let scoreOne = responseNHL.dates[0].games[i].teams.away.score;
+          let teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
+          let scoreTwo = responseNHL.dates[0].games[i].teams.home.score;
+          prepareGames[i] = [[teamOne, scoreOne], [teamTwo, scoreTwo]];
+        }
+        this.setState({ games: prepareGames });
+      });
+  }
 
   onChange = date => {
     this.setState({ date })
@@ -30,12 +54,12 @@ class App extends Component {
 
   render() {
     return (<div>
-      <Calendar
+      {/* <Calendar
         onChange={this.onChange}
         value={this.state.date}
         onClick={this.clicked()}
-      />
-      <GamesContainer />
+      /> */}
+      <GamesContainer games={this.state.games}/>
       <br/>
         <div>
         <ChangeDate randomDate={this.state.randomDate} changeDateFunc={this.changeDateFunc}/>

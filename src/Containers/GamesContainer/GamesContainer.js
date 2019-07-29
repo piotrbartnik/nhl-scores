@@ -13,35 +13,14 @@ class GamesContainer extends Component {
     }
   }
 
-  componentDidMount() {
 
-    let nhlDateDay = '2019-01-02';
-    let prepareGames = [];
-
-    fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlDateDay}`)
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        let responseNHL = data;
-        console.log(`number of games that day is ${responseNHL.dates[0].games.length}`)
-        for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
-          let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
-          let scoreOne = responseNHL.dates[0].games[i].teams.away.score;
-          let teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
-          let scoreTwo = responseNHL.dates[0].games[i].teams.home.score;
-          prepareGames[i] = [[teamOne, scoreOne], [teamTwo, scoreTwo]];
-        }
-        this.setState({ games: prepareGames });
-      });
-  }
 
 
   render() {
     return (
       <div className={classes.GamesContainer}>
         
-        {this.state.games.length > 0 ? this.state.games.map((games, i) => (<ScoreSquare key={i} teamOne={games[0][0]} scoreOne={games[0][1]} teamTwo={games[1][0]} scoreTwo={games[1][1]} />)) : 'There are no games that day'}
+        {this.props.games.length > 0 ? this.props.games.map((games, i) => (<ScoreSquare key={i} teamOne={games[0][0]} scoreOne={games[0][1]} teamTwo={games[1][0]} scoreTwo={games[1][1]} />)) : 'There are no games that day'}
         
       </div>
     );
