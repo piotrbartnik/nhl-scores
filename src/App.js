@@ -10,16 +10,14 @@ import setDate from './store/reducers/reducer';
 class App extends Component {
   state = {
     date: new Date(),
-    randomDate: '2019-01-01',
+    randomDate: '2018-7-5',
     games: []
   }
 
   // clicked = () => console.log(this.state.date)
 
-
-  componentDidMount() {
-
-    let nhlDateDay = this.state.randomDate;
+  getGames = (games) => {
+    let nhlDateDay = games;
     let prepareGames = [];
 
     fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlDateDay}`)
@@ -28,16 +26,27 @@ class App extends Component {
       })
       .then(data => {
         let responseNHL = data;
-        console.log(`number of games that day is ${responseNHL.dates[0].games.length}`)
-        for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
-          let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
-          let scoreOne = responseNHL.dates[0].games[i].teams.away.score;
-          let teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
-          let scoreTwo = responseNHL.dates[0].games[i].teams.home.score;
-          prepareGames[i] = [[teamOne, scoreOne], [teamTwo, scoreTwo]];
+        if (responseNHL.dates.length > 0) {
+          console.log(`number of games that day is ${responseNHL.dates[0].games.length}`)
+          for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
+            let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
+            let scoreOne = responseNHL.dates[0].games[i].teams.away.score;
+            let teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
+            let scoreTwo = responseNHL.dates[0].games[i].teams.home.score;
+            prepareGames[i] = [[teamOne, scoreOne], [teamTwo, scoreTwo]];
+          } 
+          this.setState({ games: prepareGames });
+        } else {
+          this.setState({ games: [] });
         }
-        this.setState({ games: prepareGames });
+        console.log(prepareGames)
+
       });
+  }
+
+
+  componentDidMount() {
+    this.getGames(this.state.randomDate);
   }
 
   onChange = date => {
@@ -48,8 +57,9 @@ class App extends Component {
     const randomMonth = Math.ceil(Math.random() * 12);
     const randomDay = Math.ceil(Math.random() * 12);
     const randomDate = `2018-${randomMonth}-${randomDay}`
-    this.setState({randomDate: randomDate})
-    console.log(this.state.randomDate)
+    this.setState({ randomDate: randomDate })
+    console.log(this.state.randomDate);
+    this.getGames(this.state.randomDate);
   }
 
   render() {
@@ -59,11 +69,11 @@ class App extends Component {
         value={this.state.date}
         onClick={this.clicked()}
       /> */}
-      <GamesContainer games={this.state.games}/>
-      <br/>
-        <div>
-        <ChangeDate randomDate={this.state.randomDate} changeDateFunc={this.changeDateFunc}/>
-        </div>
+      <GamesContainer games={this.state.games} />
+      <br />
+      <div>
+        <ChangeDate randomDate={this.state.randomDate} changeDateFunc={this.changeDateFunc} />
+      </div>
     </div>
     );
   }
