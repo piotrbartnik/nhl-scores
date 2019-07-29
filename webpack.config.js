@@ -15,7 +15,12 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader?modules"]
-      }
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader'
+      },
+      
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
