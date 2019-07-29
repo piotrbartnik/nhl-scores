@@ -2,24 +2,30 @@ import React, { Component } from "react";
 import "./App.css";
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import Calendar from 'react-calendar';
+import ChangeDate from './Components/ChangeDate/ChangeDate'
 
 import { createStore } from 'redux';
 import setDate from './store/reducers/reducer';
 
 class App extends Component {
   state = {
-    date: new Date()
+    date: new Date(),
+    randomDate: 'test2'
   }
 
   clicked = () => console.log(this.state.date)
 
-  // onChange = date => {
-  //   let clickedDate = new Date(date).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2');
-  //   this.setState({ clickedDate });
-  // }
 
   onChange = date => {
     this.setState({ date })
+  }
+
+  changeDateFunc = () => {
+    const randomMonth = Math.ceil(Math.random() * 12);
+    const randomDay = Math.ceil(Math.random() * 12);
+    const randomDate = `2018-${randomMonth}-${randomDay}`
+    this.setState({randomDate: randomDate})
+    console.log(this.state.randomDate)
   }
 
   render() {
@@ -30,6 +36,10 @@ class App extends Component {
         onClick={this.clicked()}
       />
       <GamesContainer />
+      <br/>
+        <div>
+        <ChangeDate randomDate={this.state.randomDate} changeDateFunc={this.changeDateFunc}/>
+        </div>
     </div>
     );
   }
