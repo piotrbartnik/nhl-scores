@@ -11,3 +11,16 @@
   align-items: center;
   text-align: center;
 }
+
+.team3 {
+  /* background-image: url('../../assets/images/logos.png'); */
+  background-repeat: no-repeat;
+}
+
+.team3 {
+  width: 10px;
+  height: 10px;
+  background-color: orange;
+  height: 128px;
+  background-position: -5px -5px;
+}

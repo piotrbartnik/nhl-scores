@@ -10,7 +10,7 @@ class ScoreSquare extends Component {
         <div className={classes[`team${this.props.teamOneId}`]}>          
         </div>
         {this.props.teamOne} - {this.props.scoreOne}: {this.props.scoreTwo} - {this.props.teamTwo}
-        <div className={classes[`team${this.props.teamTwoId}`]}></div>
+        <div className={classes[`team${this.props.teamOneId}`]}></div>
       </div>
     );
   }
