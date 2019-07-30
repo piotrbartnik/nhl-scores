@@ -1,3 +1,7 @@
+body {
+  background: url(./assets/images/icebackground.jpg)
+}
+
 .App {
   margin: 1rem;
   font-family: Arial, Helvetica, sans-serif;
