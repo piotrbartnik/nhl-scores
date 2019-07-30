@@ -61,14 +61,6 @@ class App extends Component {
     this.setState({ date })
   }
 
-  changeDateFunc = () => {
-    const randomMonth = Math.ceil(Math.random() * 12);
-    const randomDay = Math.ceil(Math.random() * 12);
-    const randomDate = `2018-${randomMonth}-${randomDay}`
-    this.setState({ randomDate: randomDate })
-    console.log(this.state.randomDate);
-    this.getGames(this.state.randomDate);
-  }
 
   render() {
     return (<div>
