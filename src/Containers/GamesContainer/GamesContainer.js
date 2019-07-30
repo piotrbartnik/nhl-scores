@@ -11,7 +11,7 @@ class GamesContainer extends Component {
     return (
       <div className={classes.GamesContainer}>
         
-        {this.props.games.length > 0 ? this.props.games.map((games, i) => (<ScoreSquare key={i} 
+        {this.props.games.length > 0 ? this.props.games.map((games, i) => (<ScoreSquare mounted={this.props.mounted} key={i} 
         teamOneId={games[0][2]}
         teamOne={games[0][0]} 
         scoreOne={games[0][1]} 

@@ -10,6 +10,12 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  opacity: 0;
+  transition: .5s all;
+}
+
+.Mounted {
+  opacity: 1;
 }
 
 .team24, .team16, .team22, .team18, .team4, .team14, .team6, .team21, .team13, .team1, .team53, .team10, .team7, .team29, .team26, .team2, .team5, .team23, .team20, .team25, .team30, .team3, .team28, .team15, .team12, .team17, .team8, .team9, .team19, .team52, .team54 {

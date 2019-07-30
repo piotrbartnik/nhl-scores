@@ -11,7 +11,8 @@ class App extends Component {
   state = {
     date: new Date(),
     randomDate: '2018-1-1',
-    games: []
+    games: [],
+    mounted: false
   }
 
   clicked = () => {
@@ -50,6 +51,10 @@ class App extends Component {
 
   componentDidMount() {
     this.getGames(this.state.randomDate);
+    setTimeout(() => {
+      this.setState({mounted: true})
+  }, 500)
+   
   }
 
   onChange = date => {
@@ -72,7 +77,7 @@ class App extends Component {
         value={this.state.date}
         onClickDay={this.clicked}
       />
-      <GamesContainer games={this.state.games} />
+      <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     </div>
     );
   }
