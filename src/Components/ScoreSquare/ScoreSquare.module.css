@@ -4,7 +4,7 @@
   background-color: pink;
   margin: 20px;
   height: 208px;
-  width: 208px;
+  width: 500px;
   border-radius: 4px;
   display: flex;
   justify-content: center;
@@ -12,15 +12,165 @@
   text-align: center;
 }
 
-.team3 {
+.team24, .team16, .team22, .team18, .team4, .team14, .team6, .team21, .team13, .team1, .team53, .team10, .team7, .team29, .team26, .team2, .team5, .team15, .team20, .team25, .team30, .team3, .team23, .team54, .team12, .team17, .team8, .team9, .team19, .team52 {
   background-image: url(../../assets/images/logos.png);
   background-repeat: no-repeat;
+  
 }
 
-.team3 {
-  width: 10px;
-  height: 10px;
-  background-color: orange;
-  height: 128px;
-  background-position: -5px -5px;
+.team24 {
+  width: 30px;
+  height: 30px;
+  background-position: 0px 0px;
 }
+
+.team16 {
+  width: 30px;
+  height: 30px;
+  background-position: 0px -30px;
+}
+
+.team22 {
+  width: 30px;
+  height: 30px;
+  background-position: 0px -60px;
+}
+
+.team18 {
+  width: 30px;
+  height: 30px;
+  background-position: 0px -90px;
+}
+
+.team4 {
+  width: 30px;
+  height: 30px;
+  background-position: 0px -120px;
+}
+
+.team14 {
+  width: 30px;
+  height: 30px;
+  background-position: 0px -150px;
+}
+.team6 {
+  width: 30px;
+  height: 30px;
+  background-position: -30px 0px;
+}
+.team21 {
+  width: 30px;
+  height: 30px;
+  background-position: -30px -30px;
+}
+.team13 {
+  width: 30px;
+  height: 30px;
+  background-position: -30px -60px;
+}
+.team1 {
+  width: 30px;
+  height: 30px;
+  background-position: -30px -90px;
+}
+.team53 {
+  width: 30px;
+  height: 30px;
+  background-position: -30px -120px;
+}
+.team10 {
+  width: 30px;
+  height: 30px;
+  background-position: -30px -150px;
+}
+.team7 {
+  width: 30px;
+  height: 30px;
+  background-position: -60px 0px;
+}
+.team29 {
+  width: 30px;
+  height: 30px;
+  background-position: -60px -30px;
+}
+.team26 {
+  width: 30px;
+  height: 30px;
+  background-position: -60px -60px;
+}
+.team2 {
+  width: 30px;
+  height: 30px;
+  background-position: -60px -90px;
+}
+.team5 {
+  width: 30px;
+  height: 30px;
+  background-position: -60px -120px;
+}
+.team15 {
+  width: 30px;
+  height: 30px;
+  background-position: -60px -150px;
+}
+.team20 {
+  width: 30px;
+  height: 30px;
+  background-position: -90px 0px;
+}
+.team25 {
+  width: 30px;
+  height: 30px;
+  background-position: -90px -30px;
+}
+.team30 {
+  width: 30px;
+  height: 30px;
+  background-position: -90px -60px;
+}
+.team3 {
+  width: 30px;
+  height: 30px;
+  background-position: -90px -90px;
+}
+.team23 {
+  width: 30px;
+  height: 30px;
+  background-position: -90px -120px;
+}
+.team54 {
+  width: 30px;
+  height: 30px;
+  background-position: -90px -150px;
+}
+.team12 {
+  width: 30px;
+  height: 30px;
+  background-position: -120px 0px;
+}
+.team17 {
+  width: 30px;
+  height: 30px;
+  background-position: -120px -30px;
+}
+.team8 {
+  width: 30px;
+  height: 30px;
+  background-position: -120px -60px;
+}
+.team9 {
+  width: 30px;
+  height: 30px;
+  background-position: -120px -90px;
+}
+.team19 {
+  width: 30px;
+  height: 30px;
+  background-position: -120px -120px;
+}
+.team52 {
+  width: 30px;
+  height: 30px;
+  background-position: -120px -150px;
+}
+
