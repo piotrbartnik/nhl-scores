@@ -12,7 +12,7 @@
   text-align: center;
 }
 
-.team24, .team16, .team22, .team18, .team4, .team14, .team6, .team21, .team13, .team1, .team53, .team10, .team7, .team29, .team26, .team2, .team5, .team15, .team20, .team25, .team30, .team3, .team23, .team54, .team12, .team17, .team8, .team9, .team19, .team52 {
+.team24, .team16, .team22, .team18, .team4, .team14, .team6, .team21, .team13, .team1, .team53, .team10, .team7, .team29, .team26, .team2, .team5, .team23, .team20, .team25, .team30, .team3, .team28, .team15, .team12, .team17, .team8, .team9, .team19, .team52, .team54 {
   background-image: url(../../assets/images/logos.png);
   background-repeat: no-repeat;
   
@@ -108,7 +108,7 @@
   height: 30px;
   background-position: -60px -120px;
 }
-.team15 {
+.team23 {
   width: 30px;
   height: 30px;
   background-position: -60px -150px;
@@ -133,12 +133,12 @@
   height: 30px;
   background-position: -90px -90px;
 }
-.team23 {
+.team28 {
   width: 30px;
   height: 30px;
   background-position: -90px -120px;
 }
-.team54 {
+.team15 {
   width: 30px;
   height: 30px;
   background-position: -90px -150px;
@@ -172,5 +172,10 @@
   width: 30px;
   height: 30px;
   background-position: -120px -150px;
+}
+.team54 {
+  width: 30px;
+  height: 30px;
+  background-position: -150px 0px;
 }
 
