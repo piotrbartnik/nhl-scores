@@ -1,9 +1,13 @@
-const path = require("path");
+const path = require('path');
 const webpack = require("webpack");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   mode: "development",
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
   module: {
     rules: [
       {
@@ -14,17 +18,19 @@ module.exports = {
       },
       {
         test: /\.(s*)css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader?modules', 'sass-loader']
-        })
+        use: ['style-loader', 'css-loader?modules', 'sass-loader']
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpg|gif)$/i,
         use: [
-          'file-loader'
-        ]
-      }
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
@@ -35,8 +41,8 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname, "public/"),
-    port: 3000,
-    publicPath: "http://localhost:3000/dist/",
+    port: 3002,
+    publicPath: "http://localhost:3002/dist/",
     hotOnly: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
