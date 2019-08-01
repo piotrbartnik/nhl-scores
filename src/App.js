@@ -21,6 +21,8 @@ class App extends Component {
   }
 
   getGames = (games) => {
+    
+    console.log(this.state.mounted)
     let nhlDateDay = games;
     let prepareGames = [];
 
@@ -41,10 +43,15 @@ class App extends Component {
             let teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id;
             prepareGames[i] = [[teamOne, scoreOne, teamOneId], [teamTwo, scoreTwo, teamTwoId]];
           } 
+          this.setState({ mounted: false });
           this.setState({ games: prepareGames });
+          setTimeout(() => {
+            this.setState({mounted: true})
+        }, 500)
         } else {
           this.setState({ games: [] });
         }
+        
       });
   }
 
@@ -54,7 +61,6 @@ class App extends Component {
     setTimeout(() => {
       this.setState({mounted: true})
   }, 500)
-   
   }
 
   onChange = date => {
