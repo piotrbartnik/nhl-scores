@@ -22,7 +22,7 @@ class App extends Component {
 
   getGames = (games) => {
     
-    console.log(this.state.mounted)
+    
     let nhlDateDay = games;
     let prepareGames = [];
 
@@ -33,7 +33,7 @@ class App extends Component {
       .then(data => {
         let responseNHL = data;
         if (responseNHL.dates.length > 0) {
-          console.log(`number of games that day is ${responseNHL.dates[0].games.length}`)
+          
           for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
             let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
             let scoreOne = responseNHL.dates[0].games[i].teams.away.score;
