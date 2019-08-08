@@ -4,15 +4,21 @@ import classes from './ScoreSquare.module.css';
 
 class ScoreSquare extends Component {
 
-  
-  render() {   
+
+  render() {
     return (
-      <div className={this.props.mounted ? [classes.Square, classes.Mounted].join(' ') : classes.Square}> 
-        <div className={classes[`team${this.props.teamOneId}`]}>          
+      <div className={this.props.mounted ? [classes.Square, classes.Mounted].join(' ') : classes.Square}>
+        <div className={classes.SquareMargin}>
+          <div className={classes[`team${this.props.teamOneId}`]}></div>
+          <div>{this.props.teamOne}</div>
         </div>
-        {this.props.mounted}
-        {this.props.teamOne} - {this.props.scoreOne}: {this.props.scoreTwo} - {this.props.teamTwo}
-        <div className={classes[`team${this.props.teamTwoId}`]}></div>
+        <div>
+        {this.props.scoreOne}: {this.props.scoreTwo}
+        </div>
+        <div className={classes.SquareMargin}>          
+          <div className={classes[`team${this.props.teamTwoId}`]}></div>
+          <div>{this.props.teamTwo}</div>
+        </div>
       </div>
     );
   }

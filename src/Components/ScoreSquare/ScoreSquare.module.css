@@ -10,8 +10,16 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  opacity: 0;
-  
+  opacity: 0;  
+}
+
+.SquareMargin {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 115px;
 }
 
 .Mounted {
