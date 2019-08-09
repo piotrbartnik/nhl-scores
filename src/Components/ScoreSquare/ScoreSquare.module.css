@@ -20,6 +20,7 @@
   align-items: center;
   flex-wrap: wrap;
   max-width: 115px;
+  height: 100px;
 }
 
 .Mounted {
