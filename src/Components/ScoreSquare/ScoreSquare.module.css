@@ -16,13 +16,21 @@
   font-family: 'Graduate', cursive;
 }
 
-.SquareMargin {
+.TeamContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  flex-direction: column;
   max-width: 115px;
   height: 100px;
+}
+
+.TeamName {
+  font-size: 12px;
+  width: 65px;
+  padding-top: 10px;
+  height: 50px;
 }
 
 .Mounted {
