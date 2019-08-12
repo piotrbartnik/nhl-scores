@@ -8,6 +8,7 @@ import classes from './GamesContainer.scss'
 class GamesContainer extends Component {
 
   render() {
+    const noGamesContainer = <div className={classes.NoGames}>There are no games that day</div>;
     return (
       <div className={classes.GamesContainer}>
         
@@ -17,7 +18,7 @@ class GamesContainer extends Component {
         scoreOne={games[0][1]} 
         teamTwo={games[1][0]}
         scoreTwo={games[1][1]}
-        teamTwoId={games[1][2]} />)) : 'There are no games that day'}
+        teamTwoId={games[1][2]} />)) : noGamesContainer}
         
       </div>
     );
