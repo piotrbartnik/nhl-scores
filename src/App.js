@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import Calendar from 'react-calendar';
+import styles from './Calendar.scss';
 
 class App extends Component {
   state = {
@@ -72,6 +73,7 @@ class App extends Component {
         onClickDay={this.clicked}
         calendarType={"US"}
         locale={"us-US"}
+        className={styles.reactCalendar}
       />
       <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     </div>
