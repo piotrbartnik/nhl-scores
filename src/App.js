@@ -70,6 +70,8 @@ class App extends Component {
         onChange={this.onChange}
         value={this.state.date}
         onClickDay={this.clicked}
+        calendarType={"US"}
+        locale={"us-US"}
       />
       <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     </div>
