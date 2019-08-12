@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './ScoreSquare.module.css';
+import classes from './ScoreSquare.module.scss';
 // import image from '../../assets/images/logos.png'
 
 class ScoreSquare extends Component {
