@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import Calendar from 'react-calendar';
-import ChangeDate from './Components/ChangeDate/ChangeDate'
-
-import { createStore } from 'redux';
-import setDate from './store/reducers/reducer';
 
 class App extends Component {
   state = {
