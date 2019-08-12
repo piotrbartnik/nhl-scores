@@ -1,3 +1,11 @@
 body {
   background: url(./assets/images/icebackground.jpg)
 }
+
+.mainContainer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

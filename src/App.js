@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import classes from './App.css';
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import Calendar from 'react-calendar';
 import styles from './Calendar.scss';
@@ -66,7 +66,7 @@ class App extends Component {
 
 
   render() {
-    return (<div>
+    return (<div className={classes.mainContainer}>
       <Calendar
         onChange={this.onChange}
         value={this.state.date}
