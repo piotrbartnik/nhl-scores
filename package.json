@@ -4,7 +4,7 @@
   "description": "NHL-Scores",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
   },
@@ -34,6 +34,7 @@
     "react": "^16.8.6",
     "react-calendar": "^2.19.0",
     "react-dom": "^16.8.6",
+    "react-test-renderer": "^16.9.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "url-loader": "^2.1.0",
@@ -41,5 +42,9 @@
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.8.0"
+  }
 }
