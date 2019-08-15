@@ -14,10 +14,13 @@ class App extends Component {
 
   onChange = date => {
     this.setState({ date: date })
-    console.log(date, this.state.date)
+    setTimeout(() => {
+      this.asyncFunc()
+    }, 200)
+    
   }
 
-  clicked = () => {
+  asyncFunc = () => {
     const clickedDate = new Date(this.state.date).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
     console.log(this.state.date)
     this.getGames(clickedDate);
@@ -71,7 +74,7 @@ class App extends Component {
       <Calendar
         onChange={this.onChange}
         value={this.state.date}
-        onClickDay={this.clicked}
+        // onClickDay={this.clicked}
         calendarType={"US"}
         locale={"us-US"}
         className={styles.reactCalendar}
