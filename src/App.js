@@ -12,14 +12,15 @@ class App extends Component {
     mounted: false
   }
 
-  clicked = () => {
+  clicked = date => {
+    this.setState({ date })
+    console.log(this.state.date)
     const clickedDate = new Date(this.state.date).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
     this.getGames(clickedDate);
+    console.log(clickedDate)
   }
 
   getGames = (games) => {
-    
-    
     let nhlDateDay = games;
     let prepareGames = [];
 
@@ -30,7 +31,7 @@ class App extends Component {
       .then(data => {
         let responseNHL = data;
         if (responseNHL.dates.length > 0) {
-          
+
           for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
             let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
             let scoreOne = responseNHL.dates[0].games[i].teams.away.score;
@@ -39,16 +40,15 @@ class App extends Component {
             let teamOneId = responseNHL.dates[0].games[i].teams.away.team.id;
             let teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id;
             prepareGames[i] = [[teamOne, scoreOne, teamOneId], [teamTwo, scoreTwo, teamTwoId]];
-          } 
+          }
           this.setState({ mounted: false });
           this.setState({ games: prepareGames });
           setTimeout(() => {
-            this.setState({mounted: true})
-        }, 500)
+            this.setState({ mounted: true })
+          }, 500)
         } else {
           this.setState({ games: [] });
         }
-        
       });
   }
 
@@ -56,19 +56,14 @@ class App extends Component {
   componentDidMount() {
     this.getGames(this.state.randomDate);
     setTimeout(() => {
-      this.setState({mounted: true})
-  }, 500)
-  }
-
-  onChange = date => {
-    this.setState({ date })
+      this.setState({ mounted: true })
+    }, 500)
   }
 
 
   render() {
     return (<div className={classes.mainContainer}>
       <Calendar
-        onChange={this.onChange}
         value={this.state.date}
         onClickDay={this.clicked}
         calendarType={"US"}
