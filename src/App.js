@@ -12,12 +12,15 @@ class App extends Component {
     mounted: false
   }
 
-  clicked = date => {
-    this.setState({ date })
-    console.log(this.state.date)
+  onChange = date => {
+    this.setState({ date: date })
+    console.log(date, this.state.date)
+  }
+
+  clicked = () => {
     const clickedDate = new Date(this.state.date).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
+    console.log(this.state.date)
     this.getGames(clickedDate);
-    console.log(clickedDate)
   }
 
   getGames = (games) => {
@@ -60,10 +63,13 @@ class App extends Component {
     }, 500)
   }
 
+ 
+
 
   render() {
     return (<div className={classes.mainContainer}>
       <Calendar
+        onChange={this.onChange}
         value={this.state.date}
         onClickDay={this.clicked}
         calendarType={"US"}
