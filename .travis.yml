@@ -1,3 +1,7 @@
+language: node_js
+node_js: 
+  - 8.16.0
+cache: npm
 deploy:
   provider: pages
   skip_cleanup: true
@@ -5,4 +9,3 @@ deploy:
   keep_history: true
   on:
     branch: master
-    
