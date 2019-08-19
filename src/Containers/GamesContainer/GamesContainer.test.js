@@ -8,6 +8,6 @@ configure({ adapter: new Adapter() });
 describe('<ScoreSquares', () => {
   it('should render as much ScoreSquares as games that day', () => {
     const wrapper = shallow(<ScoreSquare />)
-    expect(wrapper.to.have.class('Square'));
+    expect(wrapper.find('div'));
   });
 })
