@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/piotrbartnik/nhl-scores/issues"
   },
-  "homepage": "https://github.com/piotrbartnik/nhl-scores#readme",
+  "homepage": "https://piotrbartnik.github.io/nhl-scores",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
@@ -47,6 +48,7 @@
     "@babel/polyfill": "^7.4.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "gh-pages": "^2.1.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0"
   },
