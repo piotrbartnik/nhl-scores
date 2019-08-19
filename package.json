@@ -9,10 +9,7 @@
     "build": "webpack --mode production",
     "deploy": "gh-pages -d dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/piotrbartnik/nhl-scores.git"
-  },
+  
   "author": "Piotr Bartnik",
   "license": "ISC",
   "bugs": {
@@ -52,11 +49,5 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
     "travis": "^0.1.1"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "identity-obj-proxy"
-    }
   }
 }
