@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/piotrbartnik/nhl-scores/issues"
   },
-  "homepage": "https://piotrbartnik.github.io/nhl-scores",
+  "homepage": ".",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
