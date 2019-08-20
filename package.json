@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
-    "deploy": "gh-pages -d dist"
+    "start": "webpack-dev-server --mode development -p",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -48,9 +47,7 @@
     "@babel/polyfill": "^7.4.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "gh-pages": "^2.1.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.8.0",
-    "travis": "^0.1.1"
+    "jest": "^24.8.0"
   }
 }
