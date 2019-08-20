@@ -45,8 +45,9 @@ module.exports = {
     publicPath: "http://localhost:3002/dist/",
     hotOnly: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), new HtmlWebPackPlugin({
+  plugins: [new webpack.HotModuleReplacementPlugin(), new HtmlWebPackPlugin({    
     template: "./public/index.html",
-    filename: "./index.html"
+    filename: "./index.html",
+    favicon: './public/favicon.png'
   })],
 };
