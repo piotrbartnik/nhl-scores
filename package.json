@@ -52,6 +52,7 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "identity-obj-proxy": "^3.0.0",
     "imagemin": "^7.0.0",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "jpegtran-bin": "^4.0.0"
   }
 }

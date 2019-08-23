@@ -9,9 +9,18 @@ gulp.task('clean_logs', function () {
     .pipe(stripDebug())
     .pipe(gulp.dest('dist'));
 });
- 
-gulp.task('imagemin', function() {
+
+gulp.task('imagemin', function () {
   return gulp.src(['dist/*.{gif,png,jpg}'])
-  .pipe(imagemin())
-  .pipe(gulp.dest('dist/images'));
+    .pipe(imagemin({
+      interlaced: true,
+      progressive: true,
+      optimizationLevel: 5,
+      svgoPlugins: [
+        {
+          removeViewBox: true
+        }
+      ]
+    }))
+    .pipe(gulp.dest('dist/'));
 });
