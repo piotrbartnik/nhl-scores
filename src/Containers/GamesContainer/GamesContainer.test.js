@@ -6,8 +6,8 @@ import ScoreSquare from '../../Components/ScoreSquare/ScoreSquare';
 configure({ adapter: new Adapter() });
 
 describe('Games container', () => {
-  it('should render as much ScoreSquares as games that day', () => {
-    const wrapper = mount(<ScoreSquare />)
-    expect(wrapper.find('.TeamName').hasClass('Square')).to.equal(true);
+  it('should render ScoreSquares element', () => {
+    const wrapper = mount(<ScoreSquare />);
+    expect(wrapper.exists('.Squaress'))
   });
 })
