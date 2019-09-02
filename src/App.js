@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from './App.css';
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
-import Calendar from 'react-calendar';
+import DateTile from './Components/SliderCalendar/DateTiles/DateTiles'
 import styles from './Calendar.scss';
 
 class App extends Component {
@@ -71,7 +71,7 @@ class App extends Component {
 
   render() {
     return (<div className={classes.mainContainer}>
-     
+      <DateTile />
       <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     </div>
     );

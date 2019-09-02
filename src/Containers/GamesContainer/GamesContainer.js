@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ScoreSquare from '../../Components/ScoreSquare/ScoreSquare';
-import ChangeDate from '../../Components/ChangeDate/ChangeDate';
 
 import classes from './GamesContainer.scss'
 
