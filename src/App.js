@@ -71,14 +71,7 @@ class App extends Component {
 
   render() {
     return (<div className={classes.mainContainer}>
-      <Calendar
-        onChange={this.onChange}
-        value={this.state.date}
-        // onClickDay={this.clicked}
-        calendarType={"US"}
-        locale={"us-US"}
-        className={styles.reactCalendar}
-      />
+     
       <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     </div>
     );
