@@ -9,7 +9,7 @@ class App extends Component {
     dateToday: new Date(),
     randomDate: '2019-1-1',
     games: [],
-    mounted: false,    
+    mounted: false,
   }
 
   onChange = date => {
@@ -17,7 +17,7 @@ class App extends Component {
     setTimeout(() => {
       this.asyncFunc()
     }, 200)
-    
+
   }
 
   asyncFunc = () => {
@@ -69,14 +69,19 @@ class App extends Component {
   render() {
 
     const middleFieldDate = this.state.dateToday;
-    const middleFieldDay = middleFieldDate.getDay();
-    const middleFieldYear = middleFieldDate.getFullYear();
-    const middleFieldMonth = middleFieldDate.getMonth();
-    const daysForCalendar = [[new Date(middleFieldYear, middleFieldMonth, middleFieldDay-2)].toString(),[new Date(middleFieldYear, middleFieldMonth, middleFieldDay-1)].toString(), [new Date(middleFieldYear, middleFieldMonth, middleFieldDay)].toString(), [new Date(middleFieldYear, middleFieldMonth, middleFieldDay+1)].toString(), [new Date(middleFieldYear, middleFieldMonth, middleFieldDay+2)].toString()];
-    console.log(daysForCalendar[0].split(' ')[0])
-    const dateTiles = daysForCalendar.map((x) => (<DateTile dayName={x.split(' ')[0]} />))
-    return (<div className={classes.mainContainer}>
 
+    const daysForCalendar = [];
+
+    for (let i = -2; i<3; i++) {
+      daysForCalendar.push([new Date(middleFieldDate.getFullYear(), middleFieldDate.getMonth(), middleFieldDate.getDay()+i)])
+    };   
+    
+    const dateTiles = daysForCalendar.map((x) => {
+      const dateForTile = x.toString().split(' ');
+      return <DateTile dayName={dateForTile[0]} />
+    });
+
+    return (<div className={classes.mainContainer}>
       {dateTiles}
       <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     </div>
