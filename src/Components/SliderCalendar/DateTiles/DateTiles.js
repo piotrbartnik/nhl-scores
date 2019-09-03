@@ -2,7 +2,8 @@ import React from 'react';
 import classes from './DateTiles.module.scss'
 
 const dateTile = (props) => {
-  return (<div className={classes.DateTiles}>Lolz</div>)
+  const dayDateTable = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  return (<div className={classes.DateTiles}>{props.dayName}</div>)
 };
 
 export default dateTile;

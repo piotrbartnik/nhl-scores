@@ -6,10 +6,10 @@ import styles from './Calendar.scss';
 
 class App extends Component {
   state = {
-    date: new Date(),
-    randomDate: '2018-1-1',
+    dateToday: new Date(),
+    randomDate: '2019-1-1',
     games: [],
-    mounted: false
+    mounted: false,    
   }
 
   onChange = date => {
@@ -66,12 +66,18 @@ class App extends Component {
     }, 500)
   }
 
- 
-
-
   render() {
+
+    const middleFieldDate = this.state.dateToday;
+    const middleFieldDay = middleFieldDate.getDay();
+    const middleFieldYear = middleFieldDate.getFullYear();
+    const middleFieldMonth = middleFieldDate.getMonth();
+    const daysForCalendar = [[new Date(middleFieldYear, middleFieldMonth, middleFieldDay-2)].toString(),[new Date(middleFieldYear, middleFieldMonth, middleFieldDay-1)].toString(), [new Date(middleFieldYear, middleFieldMonth, middleFieldDay)].toString(), [new Date(middleFieldYear, middleFieldMonth, middleFieldDay+1)].toString(), [new Date(middleFieldYear, middleFieldMonth, middleFieldDay+2)].toString()];
+    console.log(daysForCalendar[0].split(' ')[0])
+    const dateTiles = daysForCalendar.map((x) => (<DateTile dayName={x.split(' ')[0]} />))
     return (<div className={classes.mainContainer}>
-      <DateTile />
+
+      {dateTiles}
       <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     </div>
     );
