@@ -9,3 +9,8 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.DateTilesContainer {
+  display: flex;
+  margin-top: 20px;
+}
