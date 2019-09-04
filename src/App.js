@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from './App.css';
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import DateTile from './Components/SliderCalendar/DateTiles/DateTiles'
+import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton'
 
 class App extends Component {
   state = {
@@ -12,9 +13,14 @@ class App extends Component {
   }
 
   asyncFunc = () => {
-    // this.setState({ dateToday: new Date(event.target.getAttribute('data-date')) })
-    const clickedDate = new Date(this.state.dateToday).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
+    const clickedDate = new Date(event.target.getAttribute('data-date')).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
+    console.log(clickedDate)
     this.getGames(clickedDate);
+  }
+
+  changeDays = (numberOfDays) => {
+    const dateToChange = this.state.dateToday;
+    this.setState({dateToday: new Date(dateToChange.setDate(dateToChange.getDate() + numberOfDays))});
   }
 
   getGames = (games) => {
@@ -79,7 +85,11 @@ class App extends Component {
     });
 
     return (<div className={classes.mainContainer}>
-      <div className={classes.DateTilesContainer}>{dateTiles}</div>
+      <div className={classes.DateTilesContainer}>
+        <ChandeDaysButton changeDays={() => this.changeDays(-5)}/>
+        {dateTiles}
+        <ChandeDaysButton changeDays={() => this.changeDays(5)}/>
+      </div>
       <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     </div>
     );
