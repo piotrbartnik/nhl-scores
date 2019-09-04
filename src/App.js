@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import classes from './App.css';
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import DateTile from './Components/SliderCalendar/DateTiles/DateTiles'
-import styles from './Calendar.scss';
 
 class App extends Component {
   state = {
@@ -12,22 +11,8 @@ class App extends Component {
     mounted: false,
   }
 
-  onChange = date => {
-    this.setState({ date: date })
-    setTimeout(() => {
-      this.asyncFunc()
-    }, 200)
-
-  }
-
-  
   asyncFunc = () => {
-    
-    console.log(this.state.date)
-  }
-
-  asyncFunc = () => {
-    this.setState({ dateToday: new Date(2018, 2, 5) }) 
+    // this.setState({ dateToday: new Date(event.target.getAttribute('data-date')) })
     const clickedDate = new Date(this.state.dateToday).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
     this.getGames(clickedDate);
   }
@@ -75,22 +60,22 @@ class App extends Component {
   render() {
 
     const middleFieldDate = this.state.dateToday;
-    console.log(middleFieldDate)
     const daysForCalendar = [];
 
-    for (let i = -2; i<3; i++) {
-      daysForCalendar.push([new Date(middleFieldDate.getFullYear(), middleFieldDate.getMonth(), middleFieldDate.getDay()+i)])
-    };   
-    
-    const dateTiles = daysForCalendar.map(date => {
+    for (let i = -2; i < 3; i++) {
+      daysForCalendar.push([new Date(middleFieldDate.getFullYear(), middleFieldDate.getMonth(), middleFieldDate.getDate() + i)])
+    };
+    const dateTiles = daysForCalendar.map((date, iteration) => {
       const dateForTile = date.toString().split(' ');
-      return <DateTile 
-        dayName={dateForTile[0]} 
-        dayDate={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]} 
+      return <DateTile
+        label={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
+        keyData={iteration}
+        dayName={dateForTile[0]}
+        dayDate={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
         dayMonth={dateForTile[1]}
         dayYear={dateForTile[3]}
         changeDate={this.asyncFunc}
-        />
+      />
     });
 
     return (<div className={classes.mainContainer}>
