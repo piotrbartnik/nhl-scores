@@ -86,9 +86,9 @@ class App extends Component {
 
     return (<div className={classes.mainContainer}>
       <div className={classes.DateTilesContainer}>
-        <ChandeDaysButton changeDays={() => this.changeDays(-5)}/>
+        <ChandeDaysButton arrowDirection={'left'} changeDays={() => this.changeDays(-5)}/>
         {dateTiles}
-        <ChandeDaysButton changeDays={() => this.changeDays(5)}/>
+        <ChandeDaysButton arrowDirection={'right'} changeDays={() => this.changeDays(5)}/>
       </div>
       <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     </div>

@@ -3,7 +3,8 @@ import classes from './ChangeDaysButton.module.scss'
 
 const changeDaysButton = (props) => {
   return (
-    <button className={classes.ChangeDaysButton} onClick={props.changeDays}>Test</button>
+    <button className={classes.ChangeDaysButton} onClick={props.changeDays} arrowDirection={props.arrowDirection}>
+      {props.arrowDirection ==='left' ? <i className="fas fa-chevron-left"></i> : <i className="fas fa-chevron-right"></i>}</button>
   )
 };
 
