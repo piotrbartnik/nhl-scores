@@ -1,29 +1,26 @@
 import React, { Component } from "react";
 import classes from './App.css';
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
-import Calendar from 'react-calendar';
-import styles from './Calendar.scss';
+import DateTile from './Components/SliderCalendar/DateTiles/DateTiles'
+import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton'
 
 class App extends Component {
   state = {
-    date: new Date(),
-    randomDate: '2018-1-1',
+    dateToday: new Date(),
+    randomDate: '2019-1-1',
     games: [],
-    mounted: false
-  }
-
-  onChange = date => {
-    this.setState({ date: date })
-    setTimeout(() => {
-      this.asyncFunc()
-    }, 200)
-    
+    mounted: false,
   }
 
   asyncFunc = () => {
-    const clickedDate = new Date(this.state.date).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
-    console.log(this.state.date)
+    const clickedDate = new Date(event.target.getAttribute('data-date')).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
+    console.log(clickedDate)
     this.getGames(clickedDate);
+  }
+
+  changeDays = (numberOfDays) => {
+    const dateToChange = this.state.dateToday;
+    this.setState({dateToday: new Date(dateToChange.setDate(dateToChange.getDate() + numberOfDays))});
   }
 
   getGames = (games) => {
@@ -66,19 +63,33 @@ class App extends Component {
     }, 500)
   }
 
- 
-
-
   render() {
-    return (<div className={classes.mainContainer}>
-      <Calendar
-        onChange={this.onChange}
-        value={this.state.date}
-        // onClickDay={this.clicked}
-        calendarType={"US"}
-        locale={"us-US"}
-        className={styles.reactCalendar}
+
+    const middleFieldDate = this.state.dateToday;
+    const daysForCalendar = [];
+
+    for (let i = -2; i < 3; i++) {
+      daysForCalendar.push([new Date(middleFieldDate.getFullYear(), middleFieldDate.getMonth(), middleFieldDate.getDate() + i)])
+    };
+    const dateTiles = daysForCalendar.map((date, iteration) => {
+      const dateForTile = date.toString().split(' ');
+      return <DateTile
+        label={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
+        keyData={iteration}
+        dayName={dateForTile[0]}
+        dayDate={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
+        dayMonth={dateForTile[1]}
+        dayYear={dateForTile[3]}
+        changeDate={this.asyncFunc}
       />
+    });
+
+    return (<div className={classes.mainContainer}>
+      <div className={classes.DateTilesContainer}>
+        <ChandeDaysButton arrowDirection={'left'} changeDays={() => this.changeDays(-5)}/>
+        {dateTiles}
+        <ChandeDaysButton arrowDirection={'right'} changeDays={() => this.changeDays(5)}/>
+      </div>
       <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     </div>
     );
