@@ -1,11 +1,16 @@
 .ChangeDaysButton {
   height: 80px;
-  width: 80px;
+  width: 10px;
+  padding: 15px;
   margin: 5px;
-  background-color: pink;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   flex-direction: column;
+  border: none;
+  font-size: 30px;
+  color: #60607c;
+  outline: none;
 }

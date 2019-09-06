@@ -2,7 +2,7 @@
   height: 80px;
   width: 80px;
   margin: 5px;
-  background-color: pink;
+  background-color: #7098d67a;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,12 +10,11 @@
   flex-direction: column;
 
   &__Day {
-    font-size: 12px;
+    font-size: 18px;
   }
 
   &__Date {
-    font-size: 10px;
+    font-size: 8px;
   }
-
 }
 

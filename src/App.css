@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Graduate&display=swap');
+
 body {
-  background: url(./assets/images/icebackground.jpg)
+  background: url(./assets/images/icebackground.jpg);
+  font-family: 'Graduate', cursive;
 }
 
 .mainContainer {
