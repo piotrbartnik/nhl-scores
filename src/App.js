@@ -55,6 +55,10 @@ class App extends Component {
       });
   }
 
+  activeTileResolver = () => {
+    return new Date(event.target.getAttribute('data-date')) == this.state.dateToday ? true : false
+  }
+
 
   componentDidMount() {
     this.getGames(this.state.randomDate);
@@ -81,6 +85,7 @@ class App extends Component {
         dayMonth={dateForTile[1]}
         dayYear={dateForTile[3]}
         changeDate={this.asyncFunc}
+        activeTile={this.activeTileResolver}
       />
     });
 
