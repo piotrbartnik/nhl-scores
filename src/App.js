@@ -14,7 +14,6 @@ class App extends Component {
 
   asyncFunc = () => {
     const clickedDate = new Date(event.target.getAttribute('data-date')).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
-    console.log(clickedDate)
     this.getGames(clickedDate);
   }
 
@@ -55,9 +54,10 @@ class App extends Component {
       });
   }
 
-  activeTileResolver = () => {
-    return new Date(event.target.getAttribute('data-date')) == this.state.dateToday ? true : false
-  }
+  // activeTileResolver = () => {
+  //   // console.log(new Date(event.target.getAttribute('data-date')) == this.state.dateToday)
+  //   return new Date(event.target.getAttribute('data-date')) == this.state.dateToday ? true : false
+  // }
 
 
   componentDidMount() {
@@ -85,7 +85,7 @@ class App extends Component {
         dayMonth={dateForTile[1]}
         dayYear={dateForTile[3]}
         changeDate={this.asyncFunc}
-        activeTile={this.activeTileResolver}
+        activeTile={dateForTile.slice(0, 3).join(' ') == this.state.dateToday.toString().split(' ').slice(0, 3).join(' ')}
       />
     });
 
