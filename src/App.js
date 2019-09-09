@@ -10,12 +10,13 @@ class App extends Component {
     randomDate: '2019-1-1',
     games: [],
     mounted: false,
+    clickedDate: new Date().toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2"),
   }
 
   asyncFunc = () => {
     const clickedDate = new Date(event.target.getAttribute('data-date')).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2");
-    console.log(clickedDate)
     this.getGames(clickedDate);
+    this.setState({clickedDate: clickedDate})
   }
 
   changeDays = (numberOfDays) => {
@@ -55,7 +56,6 @@ class App extends Component {
       });
   }
 
-
   componentDidMount() {
     this.getGames(this.state.randomDate);
     setTimeout(() => {
@@ -71,8 +71,10 @@ class App extends Component {
     for (let i = -2; i < 3; i++) {
       daysForCalendar.push([new Date(middleFieldDate.getFullYear(), middleFieldDate.getMonth(), middleFieldDate.getDate() + i)])
     };
+    
     const dateTiles = daysForCalendar.map((date, iteration) => {
       const dateForTile = date.toString().split(' ');
+      let activeTileCssToggle = new Date(dateForTile.join(' ')).toLocaleDateString('us-US').replace(/(\d+)\/(\d{2})\/(\d{4})/, "$3-$1-$2") == this.state.clickedDate;
       return <DateTile
         label={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
         keyData={iteration}
@@ -81,6 +83,7 @@ class App extends Component {
         dayMonth={dateForTile[1]}
         dayYear={dateForTile[3]}
         changeDate={this.asyncFunc}
+        activeTile={activeTileCssToggle}
       />
     });
 
