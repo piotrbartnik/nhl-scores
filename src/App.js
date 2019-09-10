@@ -17,10 +17,12 @@ class App extends Component {
     const clickedDate = new Date(event.target.getAttribute('data-date')).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2");
     this.getGames(clickedDate);
     this.setState({clickedDate: clickedDate});    
-    console.log(this.state.numberOfGames)
+    // console.log(this.state.numberOfGames)
+    
   }
 
   changeDays = (numberOfDays) => {
+    this.getNumberOfGames()
     const dateToChange = this.state.middleTileDate;
     this.setState({middleTileDate: new Date(dateToChange.setDate(dateToChange.getDate() + numberOfDays))});
   }
@@ -56,23 +58,33 @@ class App extends Component {
       });
   };
 
-  getNumberOfGames = (numOfGames) => {
-    let nhlFirstDay = numOfGames;
-    return fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`)
+  getNumberOfGames = () => {
+    let nhlFirstDay;
+    let resultGames = [];
+    for (let i = -2; i < 3; i++) {
+      nhlFirstDay = new Date(this.state.middleTileDate.getFullYear(), this.state.middleTileDate.getMonth(), this.state.middleTileDate.getDate() + i).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2");
+      fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`)
       .then(response => {
         return response.json();
       })
       .then(data => {       
-        this.setState({ numberOfGames: [data.totalGames] });   
+        resultGames.push(data.totalGames);
+        console.log(data.totalGames)   
       })
+    };
+    setTimeout(() => {
+      console.log(resultGames)
+    }, 500)
+  
+    
     }
 
   componentDidMount() {
+    this.getNumberOfGames()
     this.getGames(this.state.middleTileDate.toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2"));
     setTimeout(() => {
       this.setState({ mounted: true })
     }, 500)
-    this.getNumberOfGames(new Date(2019, 9, 16).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2"))
   }
 
   render() {
@@ -99,7 +111,7 @@ class App extends Component {
         dayYear={dateForTile[3]}
         changeDate={this.asyncFunc}
         activeTile={activeTileCssToggle}
-        gamesOnDay={this.state.numberOfGames}
+        gamesOnDay={this.state.numberOfGames[iteration]}
       />
     });
 
