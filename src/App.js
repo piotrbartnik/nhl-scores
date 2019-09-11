@@ -6,22 +6,24 @@ import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/Chang
 
 class App extends Component {
   state = {
-    dateToday: new Date(),
-    randomDate: '2019-1-1',
+    middleTileDate: new Date(),
     games: [],
     mounted: false,
     clickedDate: new Date().toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2"),
+    numberOfGames: [],
   }
 
   asyncFunc = () => {
     const clickedDate = new Date(event.target.getAttribute('data-date')).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2");
     this.getGames(clickedDate);
-    this.setState({clickedDate: clickedDate})
+    this.setState({clickedDate: clickedDate});
+    
   }
 
   changeDays = (numberOfDays) => {
-    const dateToChange = this.state.dateToday;
-    this.setState({dateToday: new Date(dateToChange.setDate(dateToChange.getDate() + numberOfDays))});
+    const dateToChange = this.state.middleTileDate;
+    this.setState({middleTileDate: new Date(dateToChange.setDate(dateToChange.getDate() + numberOfDays))});
+    this.getNumberOfGames();
   }
 
   getGames = (games) => {
@@ -53,10 +55,31 @@ class App extends Component {
           this.setState({ games: [] });
         }
       });
-  }
+  };
+
+  getNumberOfGames = () => {
+    let nhlFirstDay;
+    let resultGames = [];
+    for (let i = -2; i < 3; i++) {
+      nhlFirstDay = new Date(this.state.middleTileDate.getFullYear(), this.state.middleTileDate.getMonth(), this.state.middleTileDate.getDate() + i).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2");
+      fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {       
+        resultGames.push(data.totalGames);
+         
+      })
+    };
+    setTimeout(() => {
+     this.setState({ numberOfGames : resultGames })
+    }, 500)
+    
+    }
 
   componentDidMount() {
-    this.getGames(this.state.randomDate);
+    this.getNumberOfGames()
+    this.getGames(this.state.middleTileDate.toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2"));
     setTimeout(() => {
       this.setState({ mounted: true })
     }, 500)
@@ -64,7 +87,7 @@ class App extends Component {
 
   render() {
 
-    const middleFieldDate = this.state.dateToday;
+    const middleFieldDate = this.state.middleTileDate;
     const daysForCalendar = [];
 
     for (let i = -2; i < 3; i++) {
@@ -72,8 +95,11 @@ class App extends Component {
     };
     
     const dateTiles = daysForCalendar.map((date, iteration) => {
+      
       const dateForTile = date.toString().split(' ');
       let activeTileCssToggle = new Date(dateForTile.join(' ')).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2") == this.state.clickedDate;
+      // let game = await this.getNumberOfGames(new Date(dateForTile.join(' ')).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2"));
+      // console.log(game)
       return <DateTile
         label={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
         keyData={iteration}
@@ -83,6 +109,7 @@ class App extends Component {
         dayYear={dateForTile[3]}
         changeDate={this.asyncFunc}
         activeTile={activeTileCssToggle}
+        gamesOnDay={this.state.numberOfGames[iteration]}
       />
     });
 
