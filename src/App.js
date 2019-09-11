@@ -16,15 +16,14 @@ class App extends Component {
   asyncFunc = () => {
     const clickedDate = new Date(event.target.getAttribute('data-date')).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2");
     this.getGames(clickedDate);
-    this.setState({clickedDate: clickedDate});    
-    // console.log(this.state.numberOfGames)
+    this.setState({clickedDate: clickedDate});
     
   }
 
   changeDays = (numberOfDays) => {
-    this.getNumberOfGames()
     const dateToChange = this.state.middleTileDate;
     this.setState({middleTileDate: new Date(dateToChange.setDate(dateToChange.getDate() + numberOfDays))});
+    this.getNumberOfGames();
   }
 
   getGames = (games) => {
@@ -69,13 +68,12 @@ class App extends Component {
       })
       .then(data => {       
         resultGames.push(data.totalGames);
-        console.log(data.totalGames)   
+         
       })
     };
     setTimeout(() => {
-      console.log(resultGames)
+     this.setState({ numberOfGames : resultGames })
     }, 500)
-  
     
     }
 

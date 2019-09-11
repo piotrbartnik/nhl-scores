@@ -8,7 +8,7 @@ const dateTile = (props) => {
     <div className={classes['DateTiles__Day']} data-date={dateForDataAttribute}>{props.dayName}</div>
     <div id={props.keyData} className={classes['DateTiles__Date']} data-date={dateForDataAttribute}>{props.dayDate} - {props.dayMonth} - {props.dayYear}</div>
     <div className={classes['DateTiles__Date']} data-date={dateForDataAttribute}>
-      {props.gamesOnDay ? props.gamesOnDay : '0 games'}
+      {props.gamesOnDay ? (props.gamesOnDay == 1 ? `${props.gamesOnDay} game` : `${props.gamesOnDay} games`) : '0 games'}
     </div>
   </div>)
 };
