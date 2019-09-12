@@ -10,7 +10,7 @@ class App extends Component {
     games: [],
     mounted: false,
     clickedDate: new Date().toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2"),
-    numberOfGames: [],
+    numberOfGames: {},
   }
 
   asyncFunc = () => {
@@ -59,16 +59,16 @@ class App extends Component {
 
   getNumberOfGames = () => {
     let nhlFirstDay;
-    let resultGames = [];
+    let resultGames = {};
     for (let i = -2; i < 3; i++) {
       nhlFirstDay = new Date(this.state.middleTileDate.getFullYear(), this.state.middleTileDate.getMonth(), this.state.middleTileDate.getDate() + i).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2");
+
       fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`)
       .then(response => {
         return response.json();
       })
-      .then(data => {       
-        resultGames.push(data.totalGames);
-         
+      .then(data => {   
+        data.dates[0] ? resultGames[data.dates[0].date] = data.totalGames : null;         
       })
     };
     setTimeout(() => {
@@ -97,9 +97,9 @@ class App extends Component {
     const dateTiles = daysForCalendar.map((date, iteration) => {
       
       const dateForTile = date.toString().split(' ');
-      let activeTileCssToggle = new Date(dateForTile.join(' ')).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2") == this.state.clickedDate;
-      // let game = await this.getNumberOfGames(new Date(dateForTile.join(' ')).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2"));
-      // console.log(game)
+      let dateTileDate = new Date(dateForTile.join(' ')).toLocaleDateString('us-US', { month: '2-digit', day: '2-digit',year: 'numeric' }).replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2");
+
+      let activeTileCssToggle = dateTileDate == this.state.clickedDate;
       return <DateTile
         label={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
         keyData={iteration}
@@ -109,7 +109,7 @@ class App extends Component {
         dayYear={dateForTile[3]}
         changeDate={this.asyncFunc}
         activeTile={activeTileCssToggle}
-        gamesOnDay={this.state.numberOfGames[iteration]}
+        gamesOnDay={this.state.numberOfGames[dateTileDate]}
       />
     });
 
