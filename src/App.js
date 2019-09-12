@@ -24,7 +24,6 @@ class App extends Component {
     const dateToChange = this.state.middleTileDate;
     this.setState({middleTileDate: new Date(dateToChange.setDate(dateToChange.getDate() + numberOfDays))});
     this.getNumberOfGames();
-    console.log(this.state.numberOfGames)
   }
 
   getGames = (games) => {
@@ -69,7 +68,7 @@ class App extends Component {
         return response.json();
       })
       .then(data => {   
-        resultGames[data.dates[0].date] = data.totalGames;         
+        data.dates[0] ? resultGames[data.dates[0].date] = data.totalGames : null;         
       })
     };
     setTimeout(() => {
@@ -98,8 +97,8 @@ class App extends Component {
     const dateTiles = daysForCalendar.map((date, iteration) => {
       
       const dateForTile = date.toString().split(' ');
-      let dateTileDate = new Date(dateForTile.join(' ')).toLocaleDateString('us-US').replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2");
-      console.log(dateTileDate, typeof dateTileDate)
+      let dateTileDate = new Date(dateForTile.join(' ')).toLocaleDateString('us-US', { month: '2-digit', day: '2-digit',year: 'numeric' }).replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2");
+
       let activeTileCssToggle = dateTileDate == this.state.clickedDate;
       return <DateTile
         label={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
