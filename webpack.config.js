@@ -1,17 +1,17 @@
-const path = require('path');
+const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   mode: "development",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js"
   },
   module: {
     rules: [
-     
+      
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
@@ -20,13 +20,13 @@ module.exports = {
       },
       {
         test: /\.(s*)css$/,
-        use: ['style-loader', 'css-loader?modules', 'sass-loader?modules']
+        use: ["style-loader", "css-loader?modules", "sass-loader?modules"]
       },
       {
         test: /\.(png|jpg|gif)$/i,
         use: [
           {
-            loader: 'url-loader',
+            loader: "url-loader",
             options: {
               limit: 8192,
             },
@@ -49,6 +49,6 @@ module.exports = {
   plugins: [new webpack.HotModuleReplacementPlugin(), new HtmlWebPackPlugin({    
     template: "./public/index.html",
     filename: "./index.html",
-    favicon: './public/favicon.png'
+    favicon: "./public/favicon.png"
   })]
 };

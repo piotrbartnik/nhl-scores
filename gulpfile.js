@@ -1,17 +1,17 @@
-'use strict';
+"use strict";
 
-let gulp = require('gulp');
-const stripDebug = require('gulp-strip-debug');
-const imagemin = require('gulp-imagemin');
+let gulp = require("gulp");
+const stripDebug = require("gulp-strip-debug");
+const imagemin = require("gulp-imagemin");
 
-gulp.task('clean_logs', function () {
-  return gulp.src('dist/*.js')
+gulp.task("clean_logs", function () {
+  return gulp.src("dist/*.js")
     .pipe(stripDebug())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest("dist"));
 });
 
-gulp.task('imagemin', function () {
-  return gulp.src(['dist/*.{gif,png,jpg}'])
+gulp.task("imagemin", function () {
+  return gulp.src(["dist/*.{gif,png,jpg}"])
     .pipe(imagemin({
       interlaced: true,
       progressive: true,
@@ -22,5 +22,5 @@ gulp.task('imagemin', function () {
         }
       ]
     }))
-    .pipe(gulp.dest('dist/'));
+    .pipe(gulp.dest("dist/"));
 });
