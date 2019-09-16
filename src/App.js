@@ -148,6 +148,7 @@ class App extends Component {
           changeDate={this.asyncFunc}
           activeTile={activeTileCssToggle}
           gamesOnDay={this.state.numberOfGames[dateTileDate]}
+          gamesOnDa2y={this.state.numberOfGames[dateTileDate]}
         />
       )
     })
