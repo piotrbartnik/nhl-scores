@@ -31,7 +31,6 @@
     "css-loader": "^3.1.0",
     "eslint": "^6.4.0",
     "eslint-loader": "^3.0.0",
-    "eslint-plugin-react": "^7.14.3",
     "file-loader": "^4.1.0",
     "gulp": "^4.0.2",
     "gulp-imagemin": "^6.1.0",
@@ -54,6 +53,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
+    "eslint-plugin-react": "^7.14.3",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "husky": "^3.0.5",
