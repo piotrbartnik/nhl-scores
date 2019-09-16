@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import classes from './App.css'
-import GamesContainer from './Containers/GamesContainer/GamesContainer'
-import DateTile from './Components/SliderCalendar/DateTiles/DateTiles'
-import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton'
+import React, { Component } from "react"
+import classes from "./App.css"
+import GamesContainer from "./Containers/GamesContainer/GamesContainer"
+import DateTile from "./Components/SliderCalendar/DateTiles/DateTiles"
+import ChandeDaysButton from "./Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton"
 
 class App extends Component {
   state = {
@@ -10,15 +10,15 @@ class App extends Component {
     games: [],
     mounted: false,
     clickedDate: new Date()
-      .toLocaleDateString('us-US')
-      .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2'),
+      .toLocaleDateString("us-US")
+      .replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2"),
     numberOfGames: {},
   }
 
   asyncFunc = () => {
-    const clickedDate = new Date(event.target.getAttribute('data-date'))
-      .toLocaleDateString('us-US')
-      .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2')
+    const clickedDate = new Date(event.target.getAttribute("data-date"))
+      .toLocaleDateString("us-US")
+      .replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2")
     this.getGames(clickedDate)
     this.setState({ clickedDate: clickedDate })
   }
@@ -49,12 +49,12 @@ class App extends Component {
             let scoreOne =
               new Date() >= new Date(nhlDateDay)
                 ? responseNHL.dates[0].games[i].teams.away.score
-                : '-'
+                : "-"
             let teamTwo = responseNHL.dates[0].games[i].teams.home.team.name
             let scoreTwo =
               new Date() >= new Date(nhlDateDay)
                 ? responseNHL.dates[0].games[i].teams.home.score
-                : '-'
+                : "-"
             let teamOneId = responseNHL.dates[0].games[i].teams.away.team.id
             let teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id
             prepareGames[i] = [
@@ -82,8 +82,8 @@ class App extends Component {
         this.state.middleTileDate.getMonth(),
         this.state.middleTileDate.getDate() + i
       )
-        .toLocaleDateString('us-US')
-        .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2')
+        .toLocaleDateString("us-US")
+        .replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2")
 
       fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`)
         .then(response => {
@@ -104,8 +104,8 @@ class App extends Component {
     this.getNumberOfGames()
     this.getGames(
       this.state.middleTileDate
-        .toLocaleDateString('us-US')
-        .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2')
+        .toLocaleDateString("us-US")
+        .replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2")
     )
     setTimeout(() => {
       this.setState({ mounted: true })
@@ -127,14 +127,14 @@ class App extends Component {
     }
 
     const dateTiles = daysForCalendar.map((date, iteration) => {
-      const dateForTile = date.toString().split(' ')
-      let dateTileDate = new Date(dateForTile.join(' '))
-        .toLocaleDateString('us-US', {
-          month: '2-digit',
-          day: '2-digit',
-          year: 'numeric',
+      const dateForTile = date.toString().split(" ")
+      let dateTileDate = new Date(dateForTile.join(" "))
+        .toLocaleDateString("us-US", {
+          month: "2-digit",
+          day: "2-digit",
+          year: "numeric",
         })
-        .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2')
+        .replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2")
 
       let activeTileCssToggle = dateTileDate == this.state.clickedDate
       return (
@@ -157,12 +157,12 @@ class App extends Component {
       <div className={classes.mainContainer}>
         <div className={classes.DateTilesContainer}>
           <ChandeDaysButton
-            arrowDirection={'left'}
+            arrowDirection={"left"}
             changeDays={() => this.changeDays(-5)}
           />
           {dateTiles}
           <ChandeDaysButton
-            arrowDirection={'right'}
+            arrowDirection={"right"}
             changeDays={() => this.changeDays(5)}
           />
         </div>
