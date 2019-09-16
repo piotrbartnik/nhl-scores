@@ -5,28 +5,34 @@ module.exports = {
     amd: true,
     node: true,
     jquery: false,
-    jest: true,
+    jest: true
   },
-  parser: 'babel-eslint',
-  extends: 'eslint:recommended',
+  parser: "babel-eslint",
+  extends: ["eslint:recommended"],
   globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly"
   },
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 2018,
-    sourceType: 'module',
+    sourceType: "module"
   },
-  plugins: ['react'],
+  plugins: ["prettier", "react"],
   rules: {
-    indent: ['error', 2],
-    'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'double'],
-    semi: ['error', 'always'],
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
-  },
-}
+    "prettier/prettier": [
+      "error",
+      {
+        trailingComma: "es5",
+        tabWidth: 2,
+        singleQuote: true
+      }
+    ],
+    "linebreak-style": ["error", "unix"],
+    semi: ["error", "always"],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error"
+  }
+};

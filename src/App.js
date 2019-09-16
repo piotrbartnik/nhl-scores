@@ -12,7 +12,7 @@ class App extends Component {
     clickedDate: new Date()
       .toLocaleDateString("us-US")
       .replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2"),
-    numberOfGames: {},
+    numberOfGames: {}
   };
 
   asyncFunc = () => {
@@ -28,7 +28,7 @@ class App extends Component {
     this.setState({
       middleTileDate: new Date(
         dateToChange.setDate(dateToChange.getDate() + numberOfDays)
-      ),
+      )
     });
     this.getNumberOfGames();
   };
@@ -59,7 +59,7 @@ class App extends Component {
             let teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id;
             prepareGames[i] = [
               [teamOne, scoreOne, teamOneId],
-              [teamTwo, scoreTwo, teamTwoId],
+              [teamTwo, scoreTwo, teamTwoId]
             ];
           }
           this.setState({ mounted: false });
@@ -122,7 +122,7 @@ class App extends Component {
           middleFieldDate.getFullYear(),
           middleFieldDate.getMonth(),
           middleFieldDate.getDate() + i
-        ),
+        )
       ]);
     }
 
@@ -132,7 +132,7 @@ class App extends Component {
         .toLocaleDateString("us-US", {
           month: "2-digit",
           day: "2-digit",
-          year: "numeric",
+          year: "numeric"
         })
         .replace(/(\d+)\/(\d+)\/(\d{4})/, "$3-$1-$2");
 
@@ -148,7 +148,6 @@ class App extends Component {
           changeDate={this.asyncFunc}
           activeTile={activeTileCssToggle}
           gamesOnDay={this.state.numberOfGames[dateTileDate]}
-          gamesOnDa2y={this.state.numberOfGames[dateTileDate]}
         />
       );
     });

@@ -7,7 +7,7 @@ const dateTile = props => {
     <div
       className={[
         classes.DateTiles,
-        props.activeTile ? classes["DateTiles__Active"] : null,
+        props.activeTile ? classes["DateTiles__Active"] : null
       ].join(" ")}
       onClick={() => props.changeDate(props)}
       data-date={dateForDataAttribute}

@@ -7,7 +7,7 @@ module.exports = {
   mode: "development",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "bundle.js"
   },
   module: {
     rules: [
@@ -15,11 +15,11 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
-        options: { presets: ["@babel/env"] },
+        options: { presets: ["@babel/env"] }
       },
       {
         test: /\.(s*)css$/,
-        use: ["style-loader", "css-loader?modules", "sass-loader?modules"],
+        use: ["style-loader", "css-loader?modules", "sass-loader?modules"]
       },
       {
         test: /\.(png|jpg|gif)$/i,
@@ -27,26 +27,26 @@ module.exports = {
           {
             loader: "url-loader",
             options: {
-              limit: 8192,
-            },
-          },
-        ],
-      },
-    ],
+              limit: 8192
+            }
+          }
+        ]
+      }
+    ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
   devServer: {
     contentBase: path.join(__dirname, "public/"),
     port: 3002,
     publicPath: "http://localhost:3002",
-    hotOnly: true,
+    hotOnly: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: "./public/index.html",
       filename: "./index.html",
-      favicon: "./public/favicon.png",
-    }),
-  ],
+      favicon: "./public/favicon.png"
+    })
+  ]
 };
