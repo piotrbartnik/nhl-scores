@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import ScoreSquare from "../../Components/ScoreSquare/ScoreSquare";
+import React, { Component } from 'react';
+import ScoreSquare from '../../Components/ScoreSquare/ScoreSquare';
 
-import classes from "./GamesContainer.scss";
+import classes from './GamesContainer.scss';
 
 class GamesContainer extends Component {
   render() {

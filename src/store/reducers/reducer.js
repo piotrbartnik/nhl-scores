@@ -1,7 +1,7 @@
-import * as actionTypes from "../actions/actionTypes";
+import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  date: new Date()
+  date: new Date(),
 };
 
 const setDate = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const setDate = (state = initialState, action) => {
     case actionTypes.SET_DATE:
       return {
         ...state,
-        date: action.date
+        date: action.date,
       };
     default:
       return state;
