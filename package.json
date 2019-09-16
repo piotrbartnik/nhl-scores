@@ -7,7 +7,8 @@
     "test": "jest",
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production && gulp clean_logs",
-    "pretest": "eslint --ignore-path .gitignore ."
+    "eslint-check": "./node_modules/.bin/eslint --ignore-path .gitignore .",
+    "eslint-fix": "./node_modules/.bin/eslint --fix --ignore-path .gitignore ."
   },
   "repository": {
     "type": "git",
