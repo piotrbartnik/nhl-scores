@@ -49,4 +49,4 @@ module.exports = {
       favicon: './public/favicon.png',
     }),
   ],
-}; 
+};
