@@ -46,13 +46,16 @@ class App extends Component {
         if (responseNHL.dates.length > 0) {
           for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
             let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
+            console.log(
+              new Date(responseNHL.dates[0].games[i].gameDate) > new Date()
+            );
             let scoreOne =
-              new Date() >= new Date(nhlDateDay)
+              new Date(responseNHL.dates[0].games[i].gameDate) < new Date()
                 ? responseNHL.dates[0].games[i].teams.away.score
                 : '-';
             let teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
             let scoreTwo =
-              new Date() >= new Date(nhlDateDay)
+              new Date(responseNHL.dates[0].games[i].gameDate) < new Date()
                 ? responseNHL.dates[0].games[i].teams.home.score
                 : '-';
             let teamOneId = responseNHL.dates[0].games[i].teams.away.team.id;
