@@ -33,6 +33,7 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     semi: ["error", "always"],
     "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error"
+    "react/jsx-uses-vars": "error",
+    "no-console": "off"
   }
 };
