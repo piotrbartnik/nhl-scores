@@ -10,14 +10,14 @@ class App extends Component {
     games: [],
     mounted: false,
     clickedDate: new Date()
-      .toLocaleDateString('us-US')
+      .toLocaleDateString('en-US')
       .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2'),
     numberOfGames: {},
   };
 
   asyncFunc = () => {
     const clickedDate = new Date(event.target.getAttribute('data-date'))
-      .toLocaleDateString('us-US')
+      .toLocaleDateString('en-US')
       .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2');
     this.getGames(clickedDate);
     this.setState({ clickedDate: clickedDate });
@@ -82,7 +82,7 @@ class App extends Component {
         this.state.middleTileDate.getMonth(),
         this.state.middleTileDate.getDate() + i
       )
-        .toLocaleDateString('us-US')
+        .toLocaleDateString('en-US')
         .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2');
 
       fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`)
@@ -104,7 +104,7 @@ class App extends Component {
     this.getNumberOfGames();
     this.getGames(
       this.state.middleTileDate
-        .toLocaleDateString('us-US')
+        .toLocaleDateString('en-US')
         .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2')
     );
     setTimeout(() => {
@@ -129,7 +129,7 @@ class App extends Component {
     const dateTiles = daysForCalendar.map((date, iteration) => {
       const dateForTile = date.toString().split(' ');
       let dateTileDate = new Date(dateForTile.join(' '))
-        .toLocaleDateString('us-US', {
+        .toLocaleDateString('en-US', {
           month: '2-digit',
           day: '2-digit',
           year: 'numeric',
