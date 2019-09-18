@@ -12,8 +12,8 @@ class ScoreSquare extends Component {
             : classes.Square
         }
       >
-        <div className={classes['flip-card-inner']}>
-          <div className={classes['flip-card-front']}>
+        <div className={classes['flipcard__inner']}>
+          <div className={classes['flipcard__front']}>
             <div className={classes.TeamContainer}>
               <div className={classes[`team${this.props.teamOneId}`]}></div>
               <div className={classes.TeamName}>{this.props.teamOne}</div>
@@ -26,7 +26,7 @@ class ScoreSquare extends Component {
               <div className={classes.TeamName}>{this.props.teamTwo}</div>
             </div>
           </div>
-          <div className={classes['flip-card-back']}>
+          <div className={classes['flipcard__back']}>
             {this.props.venue}- to change
           </div>
         </div>
