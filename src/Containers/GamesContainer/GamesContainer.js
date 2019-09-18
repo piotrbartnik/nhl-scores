@@ -21,6 +21,7 @@ class GamesContainer extends Component {
                 teamTwo={games[1][0]}
                 scoreTwo={games[1][1]}
                 teamTwoId={games[1][2]}
+                venue={games[2]}
               />
             ))
           : noGamesContainer}
