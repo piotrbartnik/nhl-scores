@@ -46,9 +46,6 @@ class App extends Component {
         if (responseNHL.dates.length > 0) {
           for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
             let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
-            console.log(
-              new Date(responseNHL.dates[0].games[i].gameDate) > new Date()
-            );
             let scoreOne =
               new Date(responseNHL.dates[0].games[i].gameDate) < new Date()
                 ? responseNHL.dates[0].games[i].teams.away.score
@@ -60,9 +57,11 @@ class App extends Component {
                 : '-';
             let teamOneId = responseNHL.dates[0].games[i].teams.away.team.id;
             let teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id;
+            let venue = responseNHL.dates[0].games[i].venue.name;
             prepareGames[i] = [
               [teamOne, scoreOne, teamOneId],
               [teamTwo, scoreTwo, teamTwoId],
+              venue,
             ];
           }
           this.setState({ mounted: false });

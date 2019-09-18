@@ -13,6 +13,45 @@
   opacity: 0;
 }
 
+.flipcard__inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+}
+
+.flipcard:hover .flipcard__inner {
+  transform: rotateY(180deg);
+}
+
+.flipcard__front,
+.flipcard__back {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flipcard__front {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.flipcard__back {
+  color: #000000;
+  transform: rotateY(180deg);
+}
+
 .TeamContainer {
   display: flex;
   justify-content: center;
