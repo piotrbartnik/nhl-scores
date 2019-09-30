@@ -135,8 +135,8 @@ class App extends Component {
       const activeTileCssToggle = dateTileDate == this.state.clickedDate;
       return (
         <DateTile
+          key={iteration}
           label={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
-          keyData={iteration}
           dayName={dateForTile[0]}
           dayDate={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
           dayMonth={dateForTile[1]}
