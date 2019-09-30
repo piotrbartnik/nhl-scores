@@ -34,30 +34,30 @@ class App extends Component {
   };
 
   getGames = games => {
-    let nhlDateDay = games;
-    let prepareGames = [];
+    const nhlDateDay = games;
+    const prepareGames = [];
 
     fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlDateDay}`)
       .then(response => {
         return response.json();
       })
       .then(data => {
-        let responseNHL = data;
+        const responseNHL = data;
         if (responseNHL.dates.length > 0) {
           for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
-            let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
-            let scoreOne =
+            const teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
+            const scoreOne =
               new Date(responseNHL.dates[0].games[i].gameDate) < new Date()
                 ? responseNHL.dates[0].games[i].teams.away.score
                 : '-';
-            let teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
-            let scoreTwo =
+            const teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
+            const scoreTwo =
               new Date(responseNHL.dates[0].games[i].gameDate) < new Date()
                 ? responseNHL.dates[0].games[i].teams.home.score
                 : '-';
-            let teamOneId = responseNHL.dates[0].games[i].teams.away.team.id;
-            let teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id;
-            let venue = responseNHL.dates[0].games[i].venue.name;
+            const teamOneId = responseNHL.dates[0].games[i].teams.away.team.id;
+            const teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id;
+            const venue = responseNHL.dates[0].games[i].venue.name;
             prepareGames[i] = [
               [teamOne, scoreOne, teamOneId],
               [teamTwo, scoreTwo, teamTwoId],
@@ -77,7 +77,7 @@ class App extends Component {
 
   getNumberOfGames = () => {
     let nhlFirstDay;
-    let resultGames = {};
+    const resultGames = {};
     for (let i = -2; i < 3; i++) {
       nhlFirstDay = new Date(
         this.state.middleTileDate.getFullYear(),
@@ -130,7 +130,7 @@ class App extends Component {
 
     const dateTiles = daysForCalendar.map((date, iteration) => {
       const dateForTile = date.toString().split(' ');
-      let dateTileDate = new Date(dateForTile.join(' '))
+      const dateTileDate = new Date(dateForTile.join(' '))
         .toLocaleDateString('en-US', {
           month: '2-digit',
           day: '2-digit',
@@ -138,7 +138,7 @@ class App extends Component {
         })
         .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2');
 
-      let activeTileCssToggle = dateTileDate == this.state.clickedDate;
+      const activeTileCssToggle = dateTileDate == this.state.clickedDate;
       return (
         <DateTile
           label={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}

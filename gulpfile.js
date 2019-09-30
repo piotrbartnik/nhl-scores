@@ -1,6 +1,6 @@
 'use strict';
 
-let gulp = require('gulp');
+const gulp = require('gulp');
 const stripDebug = require('gulp-strip-debug');
 const imagemin = require('gulp-imagemin');
 
