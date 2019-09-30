@@ -3,22 +3,22 @@ import classes from './App.css';
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import DateTile from './Components/SliderCalendar/DateTiles/DateTiles';
 import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
+import moment from 'moment';
 
 class App extends Component {
   state = {
     middleTileDate: new Date(),
     games: [],
     mounted: false,
-    clickedDate: new Date()
-      .toLocaleDateString('en-US')
-      .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2'),
+    clickedDate: moment(new Date()).format('YYYY-MM-DD'),
     numberOfGames: {},
   };
 
   asyncFunc = () => {
-    const clickedDate = new Date(event.target.getAttribute('data-date'))
-      .toLocaleDateString('en-US')
-      .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2');
+    const clickedDate = moment(
+      event.target.getAttribute('data-date'),
+      'D-MMM-YYYY'
+    ).format('YYYY-MM-DD');
     this.getGames(clickedDate);
     this.setState({ clickedDate: clickedDate });
   };
@@ -79,13 +79,13 @@ class App extends Component {
     let nhlFirstDay;
     const resultGames = {};
     for (let i = -2; i < 3; i++) {
-      nhlFirstDay = new Date(
-        this.state.middleTileDate.getFullYear(),
-        this.state.middleTileDate.getMonth(),
-        this.state.middleTileDate.getDate() + i
-      )
-        .toLocaleDateString('en-US')
-        .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2');
+      nhlFirstDay = moment(
+        new Date(
+          this.state.middleTileDate.getFullYear(),
+          this.state.middleTileDate.getMonth(),
+          this.state.middleTileDate.getDate() + i
+        )
+      ).format('YYYY-MM-DD');
 
       fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`)
         .then(response => {
@@ -105,9 +105,7 @@ class App extends Component {
   componentDidMount() {
     this.getNumberOfGames();
     this.getGames(
-      this.state.middleTileDate
-        .toLocaleDateString('en-US')
-        .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2')
+      moment(new Date(this.state.middleTileDate)).format('YYYY-MM-DD')
     );
     setTimeout(() => {
       this.setState({ mounted: true });
@@ -130,13 +128,9 @@ class App extends Component {
 
     const dateTiles = daysForCalendar.map((date, iteration) => {
       const dateForTile = date.toString().split(' ');
-      const dateTileDate = new Date(dateForTile.join(' '))
-        .toLocaleDateString('en-US', {
-          month: '2-digit',
-          day: '2-digit',
-          year: 'numeric',
-        })
-        .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2');
+      const dateTileDate = moment(new Date(dateForTile.join(' '))).format(
+        'YYYY-MM-DD'
+      );
 
       const activeTileCssToggle = dateTileDate == this.state.clickedDate;
       return (
