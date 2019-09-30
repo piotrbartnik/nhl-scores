@@ -34,6 +34,10 @@ module.exports = {
     semi: ["error", "always"],
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
-    "no-console": "off"
+    "no-console": "off",
+    "prefer-const": ["error", {
+      "destructuring": "any",
+      "ignoreReadBeforeAssign": false
+    }],
   }
 };

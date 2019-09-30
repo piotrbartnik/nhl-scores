@@ -3,22 +3,22 @@ import classes from './App.css';
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import DateTile from './Components/SliderCalendar/DateTiles/DateTiles';
 import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
+import moment from 'moment';
 
 class App extends Component {
   state = {
     middleTileDate: new Date(),
     games: [],
     mounted: false,
-    clickedDate: new Date()
-      .toLocaleDateString('en-US')
-      .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2'),
+    clickedDate: moment(new Date()).format('YYYY-MM-DD'),
     numberOfGames: {},
   };
 
   asyncFunc = () => {
-    const clickedDate = new Date(event.target.getAttribute('data-date'))
-      .toLocaleDateString('en-US')
-      .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2');
+    const clickedDate = moment(
+      event.target.getAttribute('data-date'),
+      'D-MMM-YYYY'
+    ).format('YYYY-MM-DD');
     this.getGames(clickedDate);
     this.setState({ clickedDate: clickedDate });
   };
@@ -34,30 +34,30 @@ class App extends Component {
   };
 
   getGames = games => {
-    let nhlDateDay = games;
-    let prepareGames = [];
+    const nhlDateDay = games;
+    const prepareGames = [];
 
     fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlDateDay}`)
       .then(response => {
         return response.json();
       })
       .then(data => {
-        let responseNHL = data;
+        const responseNHL = data;
         if (responseNHL.dates.length > 0) {
           for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
-            let teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
-            let scoreOne =
+            const teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
+            const scoreOne =
               new Date(responseNHL.dates[0].games[i].gameDate) < new Date()
                 ? responseNHL.dates[0].games[i].teams.away.score
                 : '-';
-            let teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
-            let scoreTwo =
+            const teamTwo = responseNHL.dates[0].games[i].teams.home.team.name;
+            const scoreTwo =
               new Date(responseNHL.dates[0].games[i].gameDate) < new Date()
                 ? responseNHL.dates[0].games[i].teams.home.score
                 : '-';
-            let teamOneId = responseNHL.dates[0].games[i].teams.away.team.id;
-            let teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id;
-            let venue = responseNHL.dates[0].games[i].venue.name;
+            const teamOneId = responseNHL.dates[0].games[i].teams.away.team.id;
+            const teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id;
+            const venue = responseNHL.dates[0].games[i].venue.name;
             prepareGames[i] = [
               [teamOne, scoreOne, teamOneId],
               [teamTwo, scoreTwo, teamTwoId],
@@ -77,15 +77,15 @@ class App extends Component {
 
   getNumberOfGames = () => {
     let nhlFirstDay;
-    let resultGames = {};
+    const resultGames = {};
     for (let i = -2; i < 3; i++) {
-      nhlFirstDay = new Date(
-        this.state.middleTileDate.getFullYear(),
-        this.state.middleTileDate.getMonth(),
-        this.state.middleTileDate.getDate() + i
-      )
-        .toLocaleDateString('en-US')
-        .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2');
+      nhlFirstDay = moment(
+        new Date(
+          this.state.middleTileDate.getFullYear(),
+          this.state.middleTileDate.getMonth(),
+          this.state.middleTileDate.getDate() + i
+        )
+      ).format('YYYY-MM-DD');
 
       fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`)
         .then(response => {
@@ -105,9 +105,7 @@ class App extends Component {
   componentDidMount() {
     this.getNumberOfGames();
     this.getGames(
-      this.state.middleTileDate
-        .toLocaleDateString('en-US')
-        .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2')
+      moment(new Date(this.state.middleTileDate)).format('YYYY-MM-DD')
     );
     setTimeout(() => {
       this.setState({ mounted: true });
@@ -130,19 +128,15 @@ class App extends Component {
 
     const dateTiles = daysForCalendar.map((date, iteration) => {
       const dateForTile = date.toString().split(' ');
-      let dateTileDate = new Date(dateForTile.join(' '))
-        .toLocaleDateString('en-US', {
-          month: '2-digit',
-          day: '2-digit',
-          year: 'numeric',
-        })
-        .replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$1-$2');
+      const dateTileDate = moment(new Date(dateForTile.join(' '))).format(
+        'YYYY-MM-DD'
+      );
 
-      let activeTileCssToggle = dateTileDate == this.state.clickedDate;
+      const activeTileCssToggle = dateTileDate == this.state.clickedDate;
       return (
         <DateTile
+          key={iteration}
           label={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
-          keyData={iteration}
           dayName={dateForTile[0]}
           dayDate={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
           dayMonth={dateForTile[1]}
