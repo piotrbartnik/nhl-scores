@@ -4,6 +4,7 @@ import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import DateTile from './Components/SliderCalendar/DateTiles/DateTiles';
 import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
 import Spinner from './Components/UI/Spinner/Spinner';
+
 import moment from 'moment';
 
 class App extends Component {
@@ -11,6 +12,7 @@ class App extends Component {
     middleTileDate: new Date(),
     games: [],
     mounted: false,
+    loading: true,
     clickedDate: moment(new Date()).format('YYYY-MM-DD'),
     numberOfGames: {},
   };
@@ -35,6 +37,7 @@ class App extends Component {
   };
 
   getGamesForTiles = gameDay => {
+    this.setState({ loading: true });
     const nhlDateDay = gameDay;
     const preparedGames = [];
 
@@ -68,12 +71,15 @@ class App extends Component {
           }
           this.setState({ mounted: false });
           this.setState({ games: preparedGames });
-          setTimeout(() => {
-            this.setState({ mounted: true });
-          }, 500);
         } else {
           this.setState({ games: [] });
         }
+      })
+      .then(() => {
+        this.setState({ loading: false });
+        setTimeout(() => {
+          this.setState({ mounted: true });
+        }, 500);
       });
   };
 
@@ -98,7 +104,9 @@ class App extends Component {
             ? (resultGames[data.dates[0].date] = data.totalGames)
             : null;
         })
-        .then(() => this.setState({ numberOfGames: resultGames }));
+        .then(() => {
+          this.setState({ numberOfGames: resultGames });
+        });
     }
   };
 
@@ -148,7 +156,9 @@ class App extends Component {
       );
     });
 
-    const renderedGameTiles = (
+    const renderedGameTiles = this.state.loading ? (
+      <Spinner />
+    ) : (
       <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     );
 
