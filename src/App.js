@@ -3,6 +3,7 @@ import classes from './App.css';
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import DateTile from './Components/SliderCalendar/DateTiles/DateTiles';
 import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
+import Spinner from './Components/UI/Spinner/Spinner';
 import moment from 'moment';
 
 class App extends Component {
@@ -148,6 +149,12 @@ class App extends Component {
       );
     });
 
+    const renderedGameTiles = this.state.mounted ? (
+      <GamesContainer mounted={this.state.mounted} games={this.state.games} />
+    ) : (
+      <Spinner />
+    );
+
     return (
       <div className={classes.mainContainer}>
         <div className={classes.DateTilesContainer}>
@@ -161,7 +168,7 @@ class App extends Component {
             changeDays={() => this.changeDays(5)}
           />
         </div>
-        <GamesContainer mounted={this.state.mounted} games={this.state.games} />
+        {renderedGameTiles}
       </div>
     );
   }
