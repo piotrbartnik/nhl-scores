@@ -4,7 +4,6 @@ import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import DateTile from './Components/SliderCalendar/DateTiles/DateTiles';
 import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
 import Spinner from './Components/UI/Spinner/Spinner';
-
 import moment from 'moment';
 
 class App extends Component {
