@@ -1,1 +1,1 @@
-export { sendDate } from './actionCreators';
+export { sliderAdd, sliderSubstract } from './sliderCalendar';

@@ -11,16 +11,17 @@ class App extends Component {
     middleTileDate: new Date(),
     games: [],
     mounted: false,
+    loading: true,
     clickedDate: moment(new Date()).format('YYYY-MM-DD'),
     numberOfGames: {},
   };
 
-  asyncFunc = () => {
+  passDateForTileToGames = () => {
     const clickedDate = moment(
       event.target.getAttribute('data-date'),
       'D-MMM-YYYY'
     ).format('YYYY-MM-DD');
-    this.getGames(clickedDate);
+    this.getGamesForTiles(clickedDate);
     this.setState({ clickedDate: clickedDate });
   };
 
@@ -34,9 +35,10 @@ class App extends Component {
     this.getNumberOfGames();
   };
 
-  getGames = games => {
-    const nhlDateDay = games;
-    const prepareGames = [];
+  getGamesForTiles = gameDay => {
+    this.setState({ loading: true });
+    const nhlDateDay = gameDay;
+    const preparedGames = [];
 
     fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlDateDay}`)
       .then(response => {
@@ -44,6 +46,7 @@ class App extends Component {
       })
       .then(data => {
         const responseNHL = data;
+
         if (responseNHL.dates.length > 0) {
           for (let i = 0; i < responseNHL.dates[0].games.length; i++) {
             const teamOne = responseNHL.dates[0].games[i].teams.away.team.name;
@@ -59,20 +62,23 @@ class App extends Component {
             const teamOneId = responseNHL.dates[0].games[i].teams.away.team.id;
             const teamTwoId = responseNHL.dates[0].games[i].teams.home.team.id;
             const venue = responseNHL.dates[0].games[i].venue.name;
-            prepareGames[i] = [
+            preparedGames[i] = [
               [teamOne, scoreOne, teamOneId],
               [teamTwo, scoreTwo, teamTwoId],
               venue,
             ];
           }
           this.setState({ mounted: false });
-          this.setState({ games: prepareGames });
-          setTimeout(() => {
-            this.setState({ mounted: true });
-          }, 500);
+          this.setState({ games: preparedGames });
         } else {
           this.setState({ games: [] });
         }
+      })
+      .then(() => {
+        this.setState({ loading: false });
+        setTimeout(() => {
+          this.setState({ mounted: true });
+        }, 500);
       });
   };
 
@@ -96,16 +102,16 @@ class App extends Component {
           data.dates[0]
             ? (resultGames[data.dates[0].date] = data.totalGames)
             : null;
+        })
+        .then(() => {
+          this.setState({ numberOfGames: resultGames });
         });
     }
-    setTimeout(() => {
-      this.setState({ numberOfGames: resultGames });
-    }, 500);
   };
 
   componentDidMount() {
     this.getNumberOfGames();
-    this.getGames(
+    this.getGamesForTiles(
       moment(new Date(this.state.middleTileDate)).format('YYYY-MM-DD')
     );
     setTimeout(() => {
@@ -142,17 +148,17 @@ class App extends Component {
           dayDate={dateForTile[2][0] == 0 ? dateForTile[2][1] : dateForTile[2]}
           dayMonth={dateForTile[1]}
           dayYear={dateForTile[3]}
-          changeDate={this.asyncFunc}
+          changeDate={this.passDateForTileToGames}
           activeTile={activeTileCssToggle}
           gamesOnDay={this.state.numberOfGames[dateTileDate]}
         />
       );
     });
 
-    const renderedGameTiles = this.state.mounted ? (
-      <GamesContainer mounted={this.state.mounted} games={this.state.games} />
-    ) : (
+    const renderedGameTiles = this.state.loading ? (
       <Spinner />
+    ) : (
+      <GamesContainer mounted={this.state.mounted} games={this.state.games} />
     );
 
     return (
