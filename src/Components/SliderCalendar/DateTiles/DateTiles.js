@@ -40,6 +40,6 @@ const dateTile = props => {
   );
 };
 
-dateTile.PropTypes = { dayMonth: PropTypes.string };
+dateTile.propTypes = { dayMonth: PropTypes.string };
 
 export default dateTile;

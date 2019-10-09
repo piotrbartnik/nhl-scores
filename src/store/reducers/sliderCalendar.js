@@ -1,7 +1,7 @@
 import * as actions from '../actions/index';
 
 const initialState = {
-  counter: 0,
+  middleTileDate: new Date(),
 };
 
 const counterReducer = (state = initialState, action) => {

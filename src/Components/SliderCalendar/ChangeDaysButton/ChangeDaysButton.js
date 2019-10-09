@@ -14,7 +14,7 @@ const changeDaysButton = props => {
   );
 };
 
-changeDaysButton.PropTypes = {
+changeDaysButton.propTypes = {
   arrowDirection: PropTypes.string,
   changeDays: PropTypes.func,
 };
