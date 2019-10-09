@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classes from './ChangeDaysButton.module.scss';
 
 const changeDaysButton = props => {
@@ -11,6 +12,11 @@ const changeDaysButton = props => {
       )}
     </button>
   );
+};
+
+changeDaysButton.PropTypes = {
+  arrowDirection: PropTypes.string,
+  changeDays: PropTypes.func,
 };
 
 export default changeDaysButton;
