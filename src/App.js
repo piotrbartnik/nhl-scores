@@ -98,4 +98,11 @@ const mapStateToProps = state => {
   return { middleTileDate: state.counterReducer.middleTileDate };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  console.log(dispatch);
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
