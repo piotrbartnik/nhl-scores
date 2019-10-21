@@ -22,7 +22,8 @@ class App extends Component {
       'D-MMM-YYYY'
     ).format('YYYY-MM-DD');
     this.getGamesForTiles(clickedDate);
-    this.setState({ clickedDate: clickedDate });
+    // this.setState({ clickedDate: clickedDate });
+    // dispatch({ type: 'CLICKED_DATE' });
   };
 
   changeDays = numberOfDays => {
