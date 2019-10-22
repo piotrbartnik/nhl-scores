@@ -1,15 +1,9 @@
 import * as actionTypes from './actionTypes';
 
-export const sliderAddFive = payload => {
+export const changeMiddleTileDate = payload => {
   console.log(payload);
   return {
-    type: actionTypes.ADD_FIVE_DAYS,
+    type: actionTypes.CHANGE_MIDDLE_TILE_DATE,
     payload: payload,
-  };
-};
-
-export const sliderSubstractFive = () => {
-  return {
-    type: actionTypes.SUBSTRACT_FIVE_DAYS,
   };
 };

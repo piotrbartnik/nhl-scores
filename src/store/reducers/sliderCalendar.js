@@ -6,7 +6,7 @@ const initialState = {
 
 const middleTileDate = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_FIVE_DAYS':
+    case 'CHANGE_MIDDLE_TILE_DATE':
       return (
         state,
         {

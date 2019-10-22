@@ -4,7 +4,10 @@ import classes from './ChangeDaysButton.module.scss';
 
 const changeDaysButton = props => {
   return (
-    <button className={classes.ChangeDaysButton} onClick={props.changeDays}>
+    <button
+      className={classes.ChangeDaysButton}
+      onClick={props.changeMiddleTileDate}
+    >
       {props.arrowDirection === 'left' ? (
         <i className="fas fa-chevron-left"></i>
       ) : (
@@ -16,7 +19,7 @@ const changeDaysButton = props => {
 
 changeDaysButton.propTypes = {
   arrowDirection: PropTypes.string,
-  changeDays: PropTypes.func,
+  changeMiddleTileDate: PropTypes.func,
 };
 
 export default changeDaysButton;

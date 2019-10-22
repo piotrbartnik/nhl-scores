@@ -1,1 +1,1 @@
-export { sliderAddFive, sliderSubstractFive } from './sliderCalendar';
+export { changeMiddleTileDate } from './sliderCalendar';

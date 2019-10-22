@@ -27,8 +27,8 @@ class App extends Component {
     // dispatch({ type: 'CLICKED_DATE' });
   };
 
-  changeDays = numberOfDays => {
-    this.props.addFiveDays(numberOfDays);
+  changeMiddleTileDateOnClick = numberOfDays => {
+    this.props.changeMiddleTileDate(numberOfDays);
     // this.getNumberOfGames();
   };
 
@@ -79,12 +79,12 @@ class App extends Component {
         <div className={classes.DateTilesContainer}>
           <ChandeDaysButton
             arrowDirection={'left'}
-            changeDays={() => this.changeDays(-5)}
+            changeMiddleTileDate={() => this.changeMiddleTileDateOnClick(-5)}
           />
           {dateTiles}
           <ChandeDaysButton
             arrowDirection={'right'}
-            changeDays={() => this.changeDays(5)}
+            changeMiddleTileDate={() => this.changeMiddleTileDateOnClick(5)}
           />
         </div>
       </div>
@@ -98,7 +98,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addFiveDays: payload => dispatch(actions.sliderAddFive(payload)),
+    changeMiddleTileDate: payload =>
+      dispatch(actions.changeMiddleTileDate(payload)),
   };
 };
 
