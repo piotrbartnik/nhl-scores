@@ -1,8 +1,10 @@
 import * as actionTypes from './actionTypes';
 
-export const sliderAddFive = () => {
+export const sliderAddFive = payload => {
+  console.log(payload);
   return {
     type: actionTypes.ADD_FIVE_DAYS,
+    payload: payload,
   };
 };
 

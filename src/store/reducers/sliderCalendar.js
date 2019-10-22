@@ -11,7 +11,9 @@ const middleTileDate = (state = initialState, action) => {
         state,
         {
           middleTileDate: new Date(
-            state.middleTileDate.setDate(state.middleTileDate.getDate() + 5)
+            state.middleTileDate.setDate(
+              state.middleTileDate.getDate() + action.payload
+            )
           ),
         }
       );

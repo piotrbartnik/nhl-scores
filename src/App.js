@@ -27,8 +27,8 @@ class App extends Component {
     // dispatch({ type: 'CLICKED_DATE' });
   };
 
-  changeDays = () => {
-    this.props.addFiveDays();
+  changeDays = numberOfDays => {
+    this.props.addFiveDays(numberOfDays);
     // this.getNumberOfGames();
   };
 
@@ -79,12 +79,12 @@ class App extends Component {
         <div className={classes.DateTilesContainer}>
           <ChandeDaysButton
             arrowDirection={'left'}
-            changeDays={() => this.changeDays()}
+            changeDays={() => this.changeDays(-5)}
           />
           {dateTiles}
           <ChandeDaysButton
             arrowDirection={'right'}
-            changeDays={() => this.changeDays()}
+            changeDays={() => this.changeDays(5)}
           />
         </div>
       </div>
@@ -98,7 +98,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addFiveDays: () => dispatch(actions.sliderAddFive()),
+    addFiveDays: payload => dispatch(actions.sliderAddFive(payload)),
   };
 };
 
