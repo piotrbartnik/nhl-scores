@@ -1,1 +1,1 @@
-export { sliderAdd, sliderSubstract } from './sliderCalendar';
+export { sliderAddFive, sliderSubstractFive } from './sliderCalendar';

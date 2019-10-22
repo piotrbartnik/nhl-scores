@@ -6,6 +6,7 @@ import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/Chang
 // import Spinner from './Components/UI/Spinner/Spinner';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import * as actions from './store/actions';
 
 class App extends Component {
   // state = {
@@ -22,18 +23,13 @@ class App extends Component {
       'D-MMM-YYYY'
     ).format('YYYY-MM-DD');
     this.getGamesForTiles(clickedDate);
-    // this.setState({ clickedDate: clickedDate });
+    this.setState({ clickedDate: clickedDate });
     // dispatch({ type: 'CLICKED_DATE' });
   };
 
-  changeDays = numberOfDays => {
-    const dateToChange = this.state.middleTileDate;
-    this.setState({
-      middleTileDate: new Date(
-        dateToChange.setDate(dateToChange.getDate() + numberOfDays)
-      ),
-    });
-    this.getNumberOfGames();
+  changeDays = () => {
+    this.props.addFiveDays();
+    // this.getNumberOfGames();
   };
 
   componentDidMount() {
@@ -44,6 +40,7 @@ class App extends Component {
 
   render() {
     const middleFieldDate = this.props.middleTileDate;
+    console.log(middleFieldDate);
     const daysForCalendar = [];
     for (let i = -2; i < 3; i++) {
       daysForCalendar.push([
@@ -82,12 +79,12 @@ class App extends Component {
         <div className={classes.DateTilesContainer}>
           <ChandeDaysButton
             arrowDirection={'left'}
-            changeDays={() => this.changeDays(-5)}
+            changeDays={() => this.changeDays()}
           />
           {dateTiles}
           <ChandeDaysButton
             arrowDirection={'right'}
-            changeDays={() => this.changeDays(5)}
+            changeDays={() => this.changeDays()}
           />
         </div>
       </div>
@@ -96,11 +93,13 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return { middleTileDate: state.counterReducer.middleTileDate };
+  return { middleTileDate: state.middleTileDate.middleTileDate };
 };
 
 const mapDispatchToProps = dispatch => {
-  console.log(dispatch);
+  return {
+    addFiveDays: () => dispatch(actions.sliderAddFive()),
+  };
 };
 
 export default connect(

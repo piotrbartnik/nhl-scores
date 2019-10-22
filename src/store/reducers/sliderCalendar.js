@@ -1,18 +1,23 @@
-import * as actions from '../actions/index';
+// import * as actions from '../actions/index';
 
 const initialState = {
   middleTileDate: new Date(),
 };
 
-const counterReducer = (state = initialState, action) => {
+const middleTileDate = (state = initialState, action) => {
   switch (action.type) {
-    case actions.sliderAdd:
-      return state + 1;
-    case actions.sliderSubstract:
-      return state - 1;
+    case 'ADD_FIVE_DAYS':
+      return (
+        state,
+        {
+          middleTileDate: new Date(
+            state.middleTileDate.setDate(state.middleTileDate.getDate() + 5)
+          ),
+        }
+      );
     default:
       return state;
   }
 };
 
-export default counterReducer;
+export default middleTileDate;
