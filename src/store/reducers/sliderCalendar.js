@@ -1,7 +1,8 @@
-// import * as actions from '../actions/index';
+import moment from 'moment';
 
 const initialState = {
   middleTileDate: new Date(),
+  clickedDate: moment(new Date()).format('YYYY-MM-DD'),
 };
 
 const middleTileDate = (state = initialState, action) => {
@@ -22,4 +23,19 @@ const middleTileDate = (state = initialState, action) => {
   }
 };
 
-export default middleTileDate;
+const activeTile = (state = initialState, action) => {
+  console.log(action);
+  switch (action.type) {
+    case 'CHANGE_ACTIVE_TILE':
+      return (
+        state,
+        {
+          clickedDate: action.dateFromTile,
+        }
+      );
+    default:
+      return state;
+  }
+};
+
+export { middleTileDate, activeTile };

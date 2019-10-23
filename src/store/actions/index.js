@@ -1,1 +1,1 @@
-export { changeMiddleTileDate } from './sliderCalendar';
+export { changeMiddleTileDate, changeActiveTile } from './sliderCalendar';

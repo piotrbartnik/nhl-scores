@@ -22,9 +22,11 @@ class App extends Component {
       event.target.getAttribute('data-date'),
       'D-MMM-YYYY'
     ).format('YYYY-MM-DD');
-    this.getGamesForTiles(clickedDate);
-    this.setState({ clickedDate: clickedDate });
-    // dispatch({ type: 'CLICKED_DATE' });
+    console.log(clickedDate);
+    // this.getGamesForTiles(clickedDate);
+    // this.setState({ clickedDate: clickedDate });
+    // // dispatch({ type: 'CLICKED_DATE' });
+    this.props.changeActiveDate(clickedDate);
   };
 
   changeMiddleTileDateOnClick = numberOfDays => {
@@ -54,11 +56,12 @@ class App extends Component {
 
     const dateTiles = daysForCalendar.map((date, iteration) => {
       const dateForTile = date.toString().split(' ');
-      // const dateTileDate = moment(new Date(dateForTile.join(' '))).format(
-      //   'YYYY-MM-DD'
-      // );
-
-      // const activeTileCssToggle = dateTileDate == this.state.clickedDate;
+      const dateTileDate = moment(new Date(dateForTile.join(' '))).format(
+        'YYYY-MM-DD'
+      );
+      console.log(this.props.clickedDate, dateTileDate);
+      const activeTileCssToggle = dateTileDate == this.props.clickedDate;
+      console.log(activeTileCssToggle);
       return (
         <DateTile
           key={iteration}
@@ -68,7 +71,7 @@ class App extends Component {
           dayMonth={dateForTile[1]}
           dayYear={dateForTile[3]}
           changeDate={this.passDateForTileToGames}
-          // activeTile={activeTileCssToggle}
+          activeTile={activeTileCssToggle}
           // gamesOnDay={this.state.numberOfGames[dateTileDate]}
         />
       );
@@ -93,13 +96,17 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return { middleTileDate: state.middleTileDate.middleTileDate };
+  return {
+    middleTileDate: state.middleTileDate.middleTileDate,
+    clickedDate: state.middleTileDate.clickedDate,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     changeMiddleTileDate: payload =>
       dispatch(actions.changeMiddleTileDate(payload)),
+    changeActiveDate: payload => dispatch(actions.changeActiveTile(payload)),
   };
 };
 
