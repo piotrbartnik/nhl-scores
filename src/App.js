@@ -22,7 +22,6 @@ class App extends Component {
       event.target.getAttribute('data-date'),
       'D-MMM-YYYY'
     ).format('YYYY-MM-DD');
-    console.log(clickedDate);
     // this.getGamesForTiles(clickedDate);
     // this.setState({ clickedDate: clickedDate });
     // // dispatch({ type: 'CLICKED_DATE' });
@@ -42,7 +41,6 @@ class App extends Component {
 
   render() {
     const middleFieldDate = this.props.middleTileDate;
-    console.log(middleFieldDate);
     const daysForCalendar = [];
     for (let i = -2; i < 3; i++) {
       daysForCalendar.push([
@@ -59,9 +57,7 @@ class App extends Component {
       const dateTileDate = moment(new Date(dateForTile.join(' '))).format(
         'YYYY-MM-DD'
       );
-      console.log(this.props.clickedDate, dateTileDate);
       const activeTileCssToggle = dateTileDate == this.props.clickedDate;
-      console.log(activeTileCssToggle);
       return (
         <DateTile
           key={iteration}
@@ -98,7 +94,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     middleTileDate: state.middleTileDate.middleTileDate,
-    clickedDate: state.middleTileDate.clickedDate,
+    clickedDate: state.activeTile.clickedDate,
   };
 };
 

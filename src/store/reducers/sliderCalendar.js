@@ -24,7 +24,6 @@ const middleTileDate = (state = initialState, action) => {
 };
 
 const activeTile = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case 'CHANGE_ACTIVE_TILE':
       return (

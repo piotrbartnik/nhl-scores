@@ -8,7 +8,6 @@ export const changeMiddleTileDate = payload => {
 };
 
 export const changeActiveTile = payload => {
-  console.log(payload);
   return {
     type: actionTypes.CHANGE_ACTIVE_TILE,
     dateFromTile: payload,
