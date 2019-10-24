@@ -1,1 +1,6 @@
-export { changeMiddleTileDate, changeActiveTile } from './sliderCalendar';
+export {
+  changeMiddleTileDate,
+  changeActiveTile,
+  mountedGameTiles,
+  showLoader,
+} from './sliderCalendar';

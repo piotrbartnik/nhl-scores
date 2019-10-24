@@ -13,3 +13,18 @@ export const changeActiveTile = payload => {
     dateFromTile: payload,
   };
 };
+
+export const mountedGameTiles = payload => {
+  console.log(payload);
+  return {
+    type: actionTypes.MOUNT_TILES,
+    mounted: payload,
+  };
+};
+
+export const showLoader = payload => {
+  return {
+    type: actionTypes.SHOW_LOADER,
+    loading: payload,
+  };
+};

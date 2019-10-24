@@ -3,7 +3,7 @@ import classes from './App.css';
 // import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import DateTile from './Components/SliderCalendar/DateTiles/DateTiles';
 import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
-// import Spinner from './Components/UI/Spinner/Spinner';
+import Spinner from './Components/UI/Spinner/Spinner';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import * as actions from './store/actions';
@@ -35,7 +35,7 @@ class App extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({ mounted: true });
+      this.props.mountedGameTiles(true);
     }, 500);
   }
 
@@ -72,6 +72,11 @@ class App extends Component {
         />
       );
     });
+    const renderedGameTiles = this.props.showLoader ? (
+      <Spinner />
+    ) : (
+      <GamesContainer mounted={this.state.mounted} games={this.state.games} />
+    );
 
     return (
       <div className={classes.mainContainer}>
@@ -86,6 +91,7 @@ class App extends Component {
             changeMiddleTileDate={() => this.changeMiddleTileDateOnClick(5)}
           />
         </div>
+        {renderedGameTiles}
       </div>
     );
   }
@@ -95,6 +101,8 @@ const mapStateToProps = state => {
   return {
     middleTileDate: state.middleTileDate.middleTileDate,
     clickedDate: state.activeTile.clickedDate,
+    showLoader: state.loader.loading,
+    mountedGameTiles: state.mountGameTiles.mounted,
   };
 };
 
@@ -103,6 +111,7 @@ const mapDispatchToProps = dispatch => {
     changeMiddleTileDate: payload =>
       dispatch(actions.changeMiddleTileDate(payload)),
     changeActiveDate: payload => dispatch(actions.changeActiveTile(payload)),
+    mountedGameTiles: payload => dispatch(actions.mountedGameTiles(payload)),
   };
 };
 
