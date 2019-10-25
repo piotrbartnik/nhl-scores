@@ -4,3 +4,5 @@ export {
   mountedGameTiles,
   showLoader,
 } from './sliderCalendar';
+
+export { gamesForTiles } from './games';

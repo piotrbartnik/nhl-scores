@@ -26,6 +26,7 @@ class App extends Component {
     // this.setState({ clickedDate: clickedDate });
     // // dispatch({ type: 'CLICKED_DATE' });
     this.props.changeActiveDate(clickedDate);
+    this.props.getGamesForTiles(clickedDate);
   };
 
   changeMiddleTileDateOnClick = numberOfDays => {
@@ -112,6 +113,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.changeMiddleTileDate(payload)),
     changeActiveDate: payload => dispatch(actions.changeActiveTile(payload)),
     mountedGameTiles: payload => dispatch(actions.mountedGameTiles(payload)),
+    getGamesForTiles: payload => dispatch(actions.gamesForTiles(payload)),
   };
 };
 
