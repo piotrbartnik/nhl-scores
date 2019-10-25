@@ -1,30 +1,20 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-// import GamesContainer from './Containers/GamesContainer/GamesContainer';
+import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import DateTile from './Components/SliderCalendar/DateTiles/DateTiles';
 import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
-import Spinner from './Components/UI/Spinner/Spinner';
+// import Spinner from './Components/UI/Spinner/Spinner';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import * as actions from './store/actions';
 
 class App extends Component {
-  // state = {
-  //   games: [],
-  //   mounted: false,
-  //   loading: true,
-  //   clickedDate: moment(new Date()).format('YYYY-MM-DD'),
-  //   numberOfGames: {},
-  // };
-
   passDateForTileToGames = () => {
+    this.props.mountedGameTiles(false);
     const clickedDate = moment(
       event.target.getAttribute('data-date'),
       'D-MMM-YYYY'
     ).format('YYYY-MM-DD');
-    // this.getGamesForTiles(clickedDate);
-    // this.setState({ clickedDate: clickedDate });
-    // // dispatch({ type: 'CLICKED_DATE' });
     this.props.changeActiveDate(clickedDate);
     this.props.getGamesForTiles(clickedDate);
   };
@@ -38,6 +28,7 @@ class App extends Component {
     setTimeout(() => {
       this.props.mountedGameTiles(true);
     }, 500);
+    this.props.getGamesForTiles(moment(new Date()).format('YYYY-MM-DD'));
   }
 
   render() {
@@ -73,12 +64,12 @@ class App extends Component {
         />
       );
     });
-    const renderedGameTiles = this.props.showLoader ? (
-      <Spinner />
-    ) : (
-      <GamesContainer mounted={this.state.mounted} games={this.state.games} />
+    const renderedGameTiles = (
+      <GamesContainer
+        mounted={this.props.mountedGameTiles}
+        games={this.props.gamesForTiles}
+      />
     );
-
     return (
       <div className={classes.mainContainer}>
         <div className={classes.DateTilesContainer}>
@@ -104,6 +95,7 @@ const mapStateToProps = state => {
     clickedDate: state.activeTile.clickedDate,
     showLoader: state.loader.loading,
     mountedGameTiles: state.mountGameTiles.mounted,
+    gamesForTiles: state.gamesFromApiSchedule.gamesApiSchedule,
   };
 };
 

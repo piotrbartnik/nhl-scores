@@ -1,5 +1,5 @@
 import { middleTileDate, activeTile } from './sliderCalendar';
-import { loader, mountGameTiles } from './gameTiles';
+import { loader, mountGameTiles, gamesFromApiSchedule } from './gameTiles';
 import { combineReducers } from 'redux';
 
 const allReducers = combineReducers({
@@ -7,6 +7,7 @@ const allReducers = combineReducers({
   activeTile,
   loader,
   mountGameTiles,
+  gamesFromApiSchedule,
 });
 
 export default allReducers;

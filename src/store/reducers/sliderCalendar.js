@@ -8,16 +8,15 @@ const initialState = {
 const middleTileDate = (state = initialState, action) => {
   switch (action.type) {
     case 'CHANGE_MIDDLE_TILE_DATE':
-      return (
-        state,
-        {
-          middleTileDate: new Date(
-            state.middleTileDate.setDate(
-              state.middleTileDate.getDate() + action.payload
-            )
-          ),
-        }
-      );
+      return {
+        ...state,
+        middleTileDate: new Date(
+          state.middleTileDate.setDate(
+            state.middleTileDate.getDate() + action.payload
+          )
+        ),
+      };
+
     default:
       return state;
   }
@@ -26,12 +25,10 @@ const middleTileDate = (state = initialState, action) => {
 const activeTile = (state = initialState, action) => {
   switch (action.type) {
     case 'CHANGE_ACTIVE_TILE':
-      return (
-        state,
-        {
-          clickedDate: action.dateFromTile,
-        }
-      );
+      return {
+        ...state,
+        clickedDate: action.dateFromTile,
+      };
     default:
       return state;
   }
