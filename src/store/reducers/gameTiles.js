@@ -2,6 +2,7 @@ const initialState = {
   mounted: false,
   loading: true,
   gamesApiSchedule: {},
+  gamesForTilesCalendar: {},
 };
 
 const loader = (state = initialState, action) => {
@@ -31,4 +32,13 @@ const gamesFromApiSchedule = (state = initialState, action) => {
   }
 };
 
-export { loader, mountGameTiles, gamesFromApiSchedule };
+const gamesForTileCalendar = (state = initialState, action) => {
+  switch (action.type) {
+    case 'GET_GAMES_FOR_CALENDAR':
+      return { ...state, gamesForTilesCalendar: action.gamesForCalendar };
+    default:
+      return state;
+  }
+};
+
+export { loader, mountGameTiles, gamesFromApiSchedule, gamesForTileCalendar };

@@ -1,10 +1,18 @@
 import * as actionTypes from './actionTypes';
-// import moment from 'moment';
+import moment from 'moment';
 
 export const getGamesForTiles = payload => {
   return {
     type: actionTypes.GET_GAMES_FOR_TILES,
     games: payload,
+  };
+};
+
+export const getGamesForSliderCalendar = payload => {
+  console.log(payload);
+  return {
+    type: actionTypes.GET_GAMES_FOR_CALENDAR,
+    gamesForCalendar: payload,
   };
 };
 
@@ -41,5 +49,32 @@ export const gamesForTiles = dateForTiles => {
         }
         dispatch(getGamesForTiles(preparedGames));
       });
+  };
+};
+
+export const numberOfGamesForSlider = middleDate => {
+  let nhlFirstDay;
+  const resultGames = {};
+  return dispatch => {
+    for (let i = -2; i < 3; i++) {
+      nhlFirstDay = moment(
+        new Date(
+          new Date(middleDate).getFullYear(),
+          new Date(middleDate).getMonth(),
+          new Date(middleDate).getDate() + i
+        )
+      ).format('YYYY-MM-DD');
+
+      fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`)
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          data.dates[0]
+            ? (resultGames[data.dates[0].date] = data.totalGames)
+            : null;
+        });
+    }
+    dispatch(getGamesForSliderCalendar(resultGames));
   };
 };

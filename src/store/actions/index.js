@@ -5,4 +5,4 @@ export {
   showLoader,
 } from './sliderCalendar';
 
-export { gamesForTiles } from './games';
+export { gamesForTiles, numberOfGamesForSlider } from './games';

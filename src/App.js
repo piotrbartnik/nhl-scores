@@ -29,6 +29,7 @@ class App extends Component {
       this.props.mountedGameTiles(true);
     }, 500);
     this.props.getGamesForTiles(moment(new Date()).format('YYYY-MM-DD'));
+    this.props.gamesForSliderCalendar(moment(new Date()).format('YYYY-MM-DD'));
   }
 
   render() {
@@ -60,15 +61,12 @@ class App extends Component {
           dayYear={dateForTile[3]}
           changeDate={this.passDateForTileToGames}
           activeTile={activeTileCssToggle}
-          // gamesOnDay={this.state.numberOfGames[dateTileDate]}
+          gamesOnDay={this.props.getGamesForSliderCalendar[dateTileDate]}
         />
       );
     });
     const renderedGameTiles = (
-      <GamesContainer
-        mounted={this.props.mountedGameTiles}
-        games={this.props.gamesForTiles}
-      />
+      <GamesContainer mounted={true} games={this.props.gamesForTiles} />
     );
     return (
       <div className={classes.mainContainer}>
@@ -96,6 +94,7 @@ const mapStateToProps = state => {
     showLoader: state.loader.loading,
     mountedGameTiles: state.mountGameTiles.mounted,
     gamesForTiles: state.gamesFromApiSchedule.gamesApiSchedule,
+    getGamesForSliderCalendar: state.gamesForTileCalendar.gamesForTilesCalendar,
   };
 };
 
@@ -106,6 +105,8 @@ const mapDispatchToProps = dispatch => {
     changeActiveDate: payload => dispatch(actions.changeActiveTile(payload)),
     mountedGameTiles: payload => dispatch(actions.mountedGameTiles(payload)),
     getGamesForTiles: payload => dispatch(actions.gamesForTiles(payload)),
+    gamesForSliderCalendar: payload =>
+      dispatch(actions.numberOfGamesForSlider(payload)),
   };
 };
 
