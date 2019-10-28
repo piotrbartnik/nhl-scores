@@ -3,7 +3,7 @@ import classes from './App.css';
 import GamesContainer from './Containers/GamesContainer/GamesContainer';
 import DateTile from './Components/SliderCalendar/DateTiles/DateTiles';
 import ChandeDaysButton from './Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
-// import Spinner from './Components/UI/Spinner/Spinner';
+import Spinner from './Components/UI/Spinner/Spinner';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import * as actions from './store/actions';
@@ -61,7 +61,9 @@ class App extends Component {
         />
       );
     });
-    const renderedGameTiles = (
+    const renderedGameTiles = this.props.showLoader ? (
+      <Spinner />
+    ) : (
       <GamesContainer
         mounted={this.props.mountedGameTilesBool}
         games={this.props.gamesForTiles}
