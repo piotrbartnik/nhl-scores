@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classes from './DateTiles.module.scss';
 
 const dateTile = props => {
@@ -38,5 +39,7 @@ const dateTile = props => {
     </div>
   );
 };
+
+dateTile.propTypes = { dayMonth: PropTypes.string };
 
 export default dateTile;

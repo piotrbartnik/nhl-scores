@@ -1,18 +1,37 @@
-import * as actions from '../actions/index';
+import moment from 'moment';
 
 const initialState = {
-  counter: 0,
+  middleTileDate: new Date(),
+  clickedDate: moment(new Date()).format('YYYY-MM-DD'),
 };
 
-const counterReducer = (state = initialState, action) => {
+const middleTileDate = (state = initialState, action) => {
   switch (action.type) {
-    case actions.sliderAdd:
-      return state + 1;
-    case actions.sliderSubstract:
-      return state - 1;
+    case 'CHANGE_MIDDLE_TILE_DATE':
+      return {
+        ...state,
+        middleTileDate: new Date(
+          state.middleTileDate.setDate(
+            state.middleTileDate.getDate() + action.payload
+          )
+        ),
+      };
+
     default:
       return state;
   }
 };
 
-export default counterReducer;
+const activeTile = (state = initialState, action) => {
+  switch (action.type) {
+    case 'CHANGE_ACTIVE_TILE':
+      return {
+        ...state,
+        clickedDate: action.dateFromTile,
+      };
+    default:
+      return state;
+  }
+};
+
+export { middleTileDate, activeTile };

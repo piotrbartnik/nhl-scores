@@ -1,13 +1,29 @@
 import * as actionTypes from './actionTypes';
 
-export const sliderAdd = () => {
+export const changeMiddleTileDate = payload => {
   return {
-    type: actionTypes.ADD_ONE,
+    type: actionTypes.CHANGE_MIDDLE_TILE_DATE,
+    payload: payload,
   };
 };
 
-export const sliderSubstract = () => {
+export const changeActiveTile = payload => {
   return {
-    type: actionTypes.SUBSTRACT_ONE,
+    type: actionTypes.CHANGE_ACTIVE_TILE,
+    dateFromTile: payload,
+  };
+};
+
+export const mountedGameTiles = payload => {
+  return {
+    type: actionTypes.MOUNT_TILES,
+    mounted: payload,
+  };
+};
+
+export const showLoader = payload => {
+  return {
+    type: actionTypes.SHOW_LOADER,
+    loading: payload,
   };
 };
