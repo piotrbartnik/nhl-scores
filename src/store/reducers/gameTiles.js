@@ -26,7 +26,7 @@ const mountGameTiles = (state = initialState, action) => {
 const gamesFromApiSchedule = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_GAMES_FOR_TILES':
-      return { ...state, gamesApiSchedule: action.games, mounted: false };
+      return { ...state, gamesApiSchedule: action.games };
     default:
       return state;
   }

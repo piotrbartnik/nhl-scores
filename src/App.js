@@ -69,7 +69,6 @@ class App extends Component {
         games={this.props.gamesForTiles}
       />
     );
-    // console.log(this.props.mountedGameTilesBool);
     return (
       <div className={classes.mainContainer}>
         <div className={classes.DateTilesContainer}>

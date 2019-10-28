@@ -62,6 +62,7 @@ export const numberOfGamesForSlider = middleDate => {
   let nhlFirstDay;
   const resultGames = {};
   return dispatch => {
+    const promises = [];
     for (let i = -2; i < 3; i++) {
       nhlFirstDay = moment(
         new Date(
@@ -71,16 +72,22 @@ export const numberOfGamesForSlider = middleDate => {
         )
       ).format('YYYY-MM-DD');
 
-      fetch(`https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`)
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          data.dates[0]
-            ? (resultGames[data.dates[0].date] = data.totalGames)
-            : null;
-        });
+      promises.push(
+        fetch(
+          `https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`
+        )
+          .then(response => {
+            return response.json();
+          })
+          .then(data => {
+            data.dates[0]
+              ? (resultGames[data.dates[0].date] = data.totalGames)
+              : null;
+          })
+      );
     }
-    dispatch(getGamesForSliderCalendar(resultGames));
+    Promise.all(promises).then(() =>
+      dispatch(getGamesForSliderCalendar(resultGames))
+    );
   };
 };
