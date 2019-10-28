@@ -10,7 +10,6 @@ import * as actions from './store/actions';
 
 class App extends Component {
   passDateForTileToGames = () => {
-    this.props.mountedGameTiles(false);
     const clickedDate = moment(
       event.target.getAttribute('data-date'),
       'D-MMM-YYYY'
@@ -21,13 +20,10 @@ class App extends Component {
 
   changeMiddleTileDateOnClick = numberOfDays => {
     this.props.changeMiddleTileDate(numberOfDays);
-    // this.getNumberOfGames();
+    this.props.gamesForSliderCalendar(this.props.middleTileDate);
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.props.mountedGameTiles(true);
-    }, 500);
     this.props.getGamesForTiles(moment(new Date()).format('YYYY-MM-DD'));
     this.props.gamesForSliderCalendar(moment(new Date()).format('YYYY-MM-DD'));
   }
@@ -66,8 +62,12 @@ class App extends Component {
       );
     });
     const renderedGameTiles = (
-      <GamesContainer mounted={true} games={this.props.gamesForTiles} />
+      <GamesContainer
+        mounted={this.props.mountedGameTilesBool}
+        games={this.props.gamesForTiles}
+      />
     );
+    // console.log(this.props.mountedGameTilesBool);
     return (
       <div className={classes.mainContainer}>
         <div className={classes.DateTilesContainer}>
@@ -92,7 +92,7 @@ const mapStateToProps = state => {
     middleTileDate: state.middleTileDate.middleTileDate,
     clickedDate: state.activeTile.clickedDate,
     showLoader: state.loader.loading,
-    mountedGameTiles: state.mountGameTiles.mounted,
+    mountedGameTilesBool: state.mountGameTiles.mounted,
     gamesForTiles: state.gamesFromApiSchedule.gamesApiSchedule,
     getGamesForSliderCalendar: state.gamesForTileCalendar.gamesForTilesCalendar,
   };

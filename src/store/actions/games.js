@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import { mountedGameTiles } from './index';
 import moment from 'moment';
 
 export const getGamesForTiles = payload => {
@@ -9,7 +10,6 @@ export const getGamesForTiles = payload => {
 };
 
 export const getGamesForSliderCalendar = payload => {
-  console.log(payload);
   return {
     type: actionTypes.GET_GAMES_FOR_CALENDAR,
     gamesForCalendar: payload,
@@ -19,6 +19,7 @@ export const getGamesForSliderCalendar = payload => {
 export const gamesForTiles = dateForTiles => {
   const apiNhl = 'https://statsapi.web.nhl.com/api/v1/schedule?date=';
   return dispatch => {
+    dispatch(mountedGameTiles(false));
     fetch(`${apiNhl}${dateForTiles}`)
       .then(response => {
         return response.json();
@@ -48,6 +49,9 @@ export const gamesForTiles = dateForTiles => {
           }
         }
         dispatch(getGamesForTiles(preparedGames));
+      })
+      .then(() => {
+        setTimeout(() => dispatch(mountedGameTiles(true)), 500);
       });
   };
 };

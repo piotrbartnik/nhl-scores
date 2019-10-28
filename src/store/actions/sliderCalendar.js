@@ -15,7 +15,6 @@ export const changeActiveTile = payload => {
 };
 
 export const mountedGameTiles = payload => {
-  console.log(payload);
   return {
     type: actionTypes.MOUNT_TILES,
     mounted: payload,
