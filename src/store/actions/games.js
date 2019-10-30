@@ -1,7 +1,9 @@
 import * as actionTypes from './actionTypes';
 import { mountedGameTiles, showLoader } from './index';
 import moment from 'moment';
-import apiNhl from '../utilities/utilities';
+import { apiNhl } from '../utilities/utilities';
+
+console.log(apiNhl);
 
 export const getGamesForTiles = payload => {
   return {
