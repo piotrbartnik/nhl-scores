@@ -1,6 +1,9 @@
 import * as actionTypes from './actionTypes';
 import { mountedGameTiles, showLoader } from './index';
 import moment from 'moment';
+import { apiNhl } from '../utilities/utilities';
+
+console.log(apiNhl);
 
 export const getGamesForTiles = payload => {
   return {
@@ -17,7 +20,6 @@ export const getGamesForSliderCalendar = payload => {
 };
 
 export const gamesForTiles = dateForTiles => {
-  const apiNhl = 'https://statsapi.web.nhl.com/api/v1/schedule?date=';
   return dispatch => {
     dispatch(showLoader(true));
     dispatch(mountedGameTiles(false));
@@ -73,9 +75,7 @@ export const numberOfGamesForSlider = middleDate => {
       ).format('YYYY-MM-DD');
 
       promises.push(
-        fetch(
-          `https://statsapi.web.nhl.com/api/v1/schedule?date=${nhlFirstDay}`
-        )
+        fetch(`${apiNhl}${nhlFirstDay}`)
           .then(response => {
             return response.json();
           })
