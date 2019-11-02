@@ -75,10 +75,7 @@ const mapStateToProps = state => {
   return {
     middleTileDate: state.middleTileDate.middleTileDate,
     clickedDate: state.activeTile.clickedDate,
-    showLoader: state.loader.loading,
-    mountedGameTilesBool: state.mountGameTiles.mounted,
     gamesForTiles: state.gamesFromApiSchedule.gamesApiSchedule,
-    getGamesForSliderCalendar: state.gamesForTileCalendar.gamesForTilesCalendar,
   };
 };
 
@@ -87,7 +84,6 @@ const mapDispatchToProps = dispatch => {
     changeMiddleTileDate: payload =>
       dispatch(actions.changeMiddleTileDate(payload)),
     changeActiveDate: payload => dispatch(actions.changeActiveTile(payload)),
-    mountedGameTiles: payload => dispatch(actions.mountedGameTiles(payload)),
     getGamesForTiles: payload => dispatch(actions.gamesForTiles(payload)),
     gamesForSliderCalendar: payload =>
       dispatch(actions.numberOfGamesForSlider(payload)),
