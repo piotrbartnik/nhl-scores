@@ -1,6 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import DateTile from '../../Components/SliderCalendar/DateTiles/DateTiles';
+import ChandeDaysButton from '../../Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
 import classes from './SliderCalendar.module.scss';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -49,7 +50,7 @@ const SliderCalendar = props => {
         dayYear={dateForTile[3]}
         changeDate={passDateForTileToGames}
         activeTile={activeTileCssToggle}
-        gamesOnDay={props.getGamesForSliderSliderCalendar[dateTileDate]}
+        gamesOnDay={props.getGamesForSliderCalendar[dateTileDate]}
       />
     );
   });
@@ -76,6 +77,7 @@ const mapStateToProps = state => {
     middleTileDate: state.middleTileDate.middleTileDate,
     clickedDate: state.activeTile.clickedDate,
     gamesForTiles: state.gamesFromApiSchedule.gamesApiSchedule,
+    getGamesForSliderCalendar: state.gamesForTileCalendar.gamesForTilesCalendar,
   };
 };
 
