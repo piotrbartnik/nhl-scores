@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import DateTile from '../../Components/SliderCalendar/DateTiles/DateTiles';
-import ChandeDaysButton from '../../Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
+import ChangeDaysButton from '../../Components/SliderCalendar/ChangeDaysButton/ChangeDaysButton';
 import classes from './SliderCalendar.module.scss';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -57,12 +57,12 @@ const SliderCalendar = props => {
 
   return (
     <div className={classes.DateTilesContainer}>
-      <ChandeDaysButton
+      <ChangeDaysButton
         arrowDirection={'left'}
         changeMiddleTileDate={() => changeMiddleTileDateOnClick(-5)}
       />
       {dateTiles}
-      <ChandeDaysButton
+      <ChangeDaysButton
         arrowDirection={'right'}
         changeMiddleTileDate={() => changeMiddleTileDateOnClick(5)}
       />
