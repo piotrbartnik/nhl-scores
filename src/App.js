@@ -9,8 +9,10 @@ import * as actions from './store/actions';
 
 class App extends Component {
   componentDidMount() {
-    this.props.getGamesForTiles(moment(new Date()).format('YYYY-MM-DD'));
-    this.props.gamesForSliderCalendar(moment(new Date()).format('YYYY-MM-DD'));
+    this.props.getGamesForGameTiles(moment(new Date()).format('YYYY-MM-DD'));
+    this.props.setGamesNumberForSliderCalendar(
+      moment(new Date()).format('YYYY-MM-DD')
+    );
   }
 
   render() {
@@ -18,7 +20,7 @@ class App extends Component {
       <Spinner />
     ) : (
       <GamesContainer
-        mounted={this.props.mountedGameTilesBool}
+        mounted={this.props.shouldGameTilesMount}
         games={this.props.gamesForTiles}
       />
     );
@@ -34,16 +36,17 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     showLoader: state.loader.loading,
-    mountedGameTilesBool: state.mountGameTiles.mounted,
+    shouldGameTilesMount: state.mountGameTiles.mounted,
     gamesForTiles: state.gamesFromApiSchedule.gamesApiSchedule,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getGamesForTiles: payload => dispatch(actions.gamesForTiles(payload)),
-    gamesForSliderCalendar: payload =>
-      dispatch(actions.numberOfGamesForSlider(payload)),
+    getGamesForGameTiles: payload =>
+      dispatch(actions.fetchGamesForTiles(payload)),
+    setGamesNumberForSliderCalendar: payload =>
+      dispatch(actions.fetchNumberOfGamesForSlider(payload)),
   };
 };
 

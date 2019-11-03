@@ -14,12 +14,12 @@ const SliderCalendar = props => {
       'D-MMM-YYYY'
     ).format('YYYY-MM-DD');
     props.changeActiveDate(clickedDate);
-    props.getGamesForTiles(clickedDate);
+    props.getGamesForGameTiles(clickedDate);
   };
 
   const changeMiddleTileDateOnClick = numberOfDays => {
     props.changeMiddleTileDate(numberOfDays);
-    props.gamesForSliderCalendar(props.middleTileDate);
+    props.setGamesNumberForSliderCalendar(props.middleTileDate);
   };
 
   const middleFieldDate = props.middleTileDate;
@@ -50,7 +50,7 @@ const SliderCalendar = props => {
         dayYear={dateForTile[3]}
         changeDate={passDateForTileToGames}
         activeTile={activeTileCssToggle}
-        gamesOnDay={props.getGamesForSliderCalendar[dateTileDate]}
+        gamesOnDay={props.getGamesNumberForSliderCalendar[dateTileDate]}
       />
     );
   });
@@ -77,7 +77,8 @@ const mapStateToProps = state => {
     middleTileDate: state.middleTileDate.middleTileDate,
     clickedDate: state.activeTile.clickedDate,
     gamesForTiles: state.gamesFromApiSchedule.gamesApiSchedule,
-    getGamesForSliderCalendar: state.gamesForTileCalendar.gamesForTilesCalendar,
+    getGamesNumberForSliderCalendar:
+      state.gamesForTileCalendar.gamesForTilesCalendar,
   };
 };
 
@@ -86,9 +87,10 @@ const mapDispatchToProps = dispatch => {
     changeMiddleTileDate: payload =>
       dispatch(actions.changeMiddleTileDate(payload)),
     changeActiveDate: payload => dispatch(actions.changeActiveTile(payload)),
-    getGamesForTiles: payload => dispatch(actions.gamesForTiles(payload)),
-    gamesForSliderCalendar: payload =>
-      dispatch(actions.numberOfGamesForSlider(payload)),
+    getGamesForGameTiles: payload =>
+      dispatch(actions.fetchGamesForTiles(payload)),
+    setGamesNumberForSliderCalendar: payload =>
+      dispatch(actions.fetchNumberOfGamesForSlider(payload)),
   };
 };
 
