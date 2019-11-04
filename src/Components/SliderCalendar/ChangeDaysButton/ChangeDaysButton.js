@@ -9,9 +9,9 @@ const changeDaysButton = props => {
       onClick={props.changeMiddleTileDate}
     >
       {props.arrowDirection === 'left' ? (
-        <i className="fas fa-chevron-left"></i>
+        <i className={classes.left}></i>
       ) : (
-        <i className="fas fa-chevron-right"></i>
+        <i className={classes.right}></i>
       )}
     </button>
   );

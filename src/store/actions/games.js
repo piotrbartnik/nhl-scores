@@ -3,23 +3,21 @@ import { mountedGameTiles, showLoader } from './index';
 import moment from 'moment';
 import { apiNhl } from '../utilities/utilities';
 
-console.log(apiNhl);
-
-export const getGamesForTiles = payload => {
+export const getGamesForGameTiles = payload => {
   return {
     type: actionTypes.GET_GAMES_FOR_TILES,
     games: payload,
   };
 };
 
-export const getGamesForSliderCalendar = payload => {
+export const getGamesNumberForSliderCalendar = payload => {
   return {
     type: actionTypes.GET_GAMES_FOR_CALENDAR,
     gamesForCalendar: payload,
   };
 };
 
-export const gamesForTiles = dateForTiles => {
+export const fetchGamesForTiles = dateForTiles => {
   return dispatch => {
     dispatch(showLoader(true));
     dispatch(mountedGameTiles(false));
@@ -51,7 +49,7 @@ export const gamesForTiles = dateForTiles => {
             ]);
           }
         }
-        dispatch(getGamesForTiles(preparedGames));
+        dispatch(getGamesForGameTiles(preparedGames));
       })
       .then(() => {
         setTimeout(() => dispatch(mountedGameTiles(true)), 500);
@@ -60,7 +58,7 @@ export const gamesForTiles = dateForTiles => {
   };
 };
 
-export const numberOfGamesForSlider = middleDate => {
+export const fetchNumberOfGamesForSlider = middleDate => {
   let nhlFirstDay;
   const resultGames = {};
   return dispatch => {
@@ -87,7 +85,7 @@ export const numberOfGamesForSlider = middleDate => {
       );
     }
     Promise.all(promises).then(() =>
-      dispatch(getGamesForSliderCalendar(resultGames))
+      dispatch(getGamesNumberForSliderCalendar(resultGames))
     );
   };
 };
