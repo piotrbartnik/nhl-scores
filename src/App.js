@@ -1,56 +1,27 @@
-import React, { Component } from 'react';
-import classes from './App.css';
-import GamesContainer from './Containers/GamesContainer/GamesContainer';
-import Spinner from './Components/UI/Spinner/Spinner';
-import SliderCalendar from './Containers/Calendar/SliderCalendar';
-import moment from 'moment';
-import { connect } from 'react-redux';
-import * as actions from './store/actions';
+import React from 'react';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import Schedule from './Containers/Schedule/Schedule';
+import Standings from './Containers/Standings/Standings';
+import Stats from './Containers/Stats/Stats';
+import MainPage from './Containers//MainPage/MainPage';
+import Layout from './hoc/Layout/Layout';
+import './App.css';
 
-class App extends Component {
-  componentDidMount() {
-    this.props.getGamesForGameTiles(moment(new Date()).format('YYYY-MM-DD'));
-    this.props.setGamesNumberForSliderCalendar(
-      moment(new Date()).format('YYYY-MM-DD')
-    );
-  }
-
-  render() {
-    const renderedGameTiles = this.props.showLoader ? (
-      <Spinner />
-    ) : (
-      <GamesContainer
-        mounted={this.props.shouldGameTilesMount}
-        games={this.props.gamesForTiles}
-      />
-    );
-    return (
-      <div className={classes.mainContainer}>
-        <SliderCalendar />
-        {renderedGameTiles}
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    showLoader: state.loader.loading,
-    shouldGameTilesMount: state.mountGameTiles.mounted,
-    gamesForTiles: state.gamesFromApiSchedule.gamesApiSchedule,
-  };
+const App = () => {
+  const routes = (
+    <Switch>
+      <Route path="/schedule" render={() => <Schedule />} />
+      <Route path="/standings" render={() => <Standings />} />
+      <Route path="/stats" render={() => <Stats />} />
+      <Route path="/" render={() => <MainPage />} />
+      <Redirect to="/" />
+    </Switch>
+  );
+  return (
+    <div>
+      <Layout>{routes}</Layout>
+    </div>
+  );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getGamesForGameTiles: payload =>
-      dispatch(actions.fetchGamesForTiles(payload)),
-    setGamesNumberForSliderCalendar: payload =>
-      dispatch(actions.fetchNumberOfGamesForSlider(payload)),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default withRouter(App);
