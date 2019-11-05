@@ -4,17 +4,24 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #703B09;
+  background-color: #8d8c8c;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
   z-index: 90;
+  border-bottom: 1px solid #000;
 }
 
 .Toolbar nav {
   height: 100%;
+}
+
+.navigationMenu {
+  display :flex;
+  justify-content: space-between;
+  width: 300px;
 }
 
 @media (max-width: 499px) {

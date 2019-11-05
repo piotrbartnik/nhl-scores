@@ -7,7 +7,7 @@ const Toolbar = () => {
     <header className={classes.Toolbar}>
       <div className={classes.Logo}></div>
       <nav className={classes.DesktopOnly}>
-        <ul>
+        <ul className={classes.navigationMenu}>
           <li>
             <Link to="/schedule">Schedule</Link>
           </li>
