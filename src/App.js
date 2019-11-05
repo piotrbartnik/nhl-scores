@@ -5,6 +5,7 @@ import Standings from './Containers/Standings/Standings';
 import Stats from './Containers/Stats/Stats';
 import MainPage from './Containers//MainPage/MainPage';
 import Layout from './hoc/Layout/Layout';
+import './App.css';
 
 const App = () => {
   const routes = (
