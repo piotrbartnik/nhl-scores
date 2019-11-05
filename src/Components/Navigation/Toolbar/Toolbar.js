@@ -1,23 +1,20 @@
 import React from 'react';
 import classes from './Toolbar.module.scss';
-import { Link } from 'react-router-dom';
+import NavLink from './NavLink/NavLink';
+import Logo from './Logo/Logo';
 
 const Toolbar = () => {
+  const routesForNavbar = ['schedule', 'standings', 'stats'];
+
+  const navbarLinks = routesForNavbar.map((el, index) => (
+    <NavLink key={index} url={el} />
+  ));
+
   return (
     <header className={classes.toolbar}>
-      <div className={classes.Logo}></div>
+      <Logo />
       <nav className={classes.desktopOnly}>
-        <ul className={classes.navigationMenu}>
-          <li>
-            <Link to="/schedule">Schedule</Link>
-          </li>
-          <li>
-            <Link to="/standings">Standings</Link>
-          </li>
-          <li>
-            <Link to="/stats">Stats</Link>
-          </li>
-        </ul>
+        <ul className={classes.navigationMenu}>{navbarLinks}</ul>
       </nav>
     </header>
   );

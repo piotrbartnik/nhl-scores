@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #8d8c8c;
+  background-color: #e7e7e7;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,12 +16,27 @@
 
 .toolbar nav {
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .navigationMenu {
   display :flex;
   justify-content: space-between;
   width: 300px;
+  list-style: none;
+}
+
+.logo {
+  a {
+    color: #000000;
+    text-decoration: none;
+    transition: 0.3s;
+
+    &:hover {
+      color: #363636;
+    }
+  }
 }
 
 @media (max-width: 499px) {
