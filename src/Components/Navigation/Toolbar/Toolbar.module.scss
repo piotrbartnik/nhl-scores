@@ -1,5 +1,5 @@
-.Toolbar {
-  height: 56px;
+.toolbar {
+  height: 40px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -14,7 +14,7 @@
   border-bottom: 1px solid #000;
 }
 
-.Toolbar nav {
+.toolbar nav {
   height: 100%;
 }
 
@@ -25,7 +25,7 @@
 }
 
 @media (max-width: 499px) {
-  .DesktopOnly {
+  .desktopOnly {
       display: none;
   }
 }
