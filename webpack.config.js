@@ -37,9 +37,10 @@ module.exports = {
   resolve: { extensions: ['*', '.js', '.jsx'] },
   devServer: {
     contentBase: path.join(__dirname, 'public/'),
-    port: 3002,
-    publicPath: 'http://localhost:3002',
+    port: 3000,
+    publicPath: '/',
     hotOnly: true,
+    historyApiFallback: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
