@@ -1,10 +1,10 @@
 import React from 'react';
 import classes from './CardContainer.module.scss';
 
-const CardContainer = () => {
+const CardContainer = props => {
   return (
     <div className={classes.cardContainer}>
-      <div className={classes.cardContainer__header}>Test</div>
+      <div className={classes.cardContainer__header}>{props.title}</div>
     </div>
   );
 };

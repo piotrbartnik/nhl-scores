@@ -7,7 +7,13 @@ const MainPage = () => {
     <div>
       Hello
       <div className={classes.mainContainer}>
-        <CardContainer />
+        <div className={classes.mainContainer__firstRow}>
+          <CardContainer title={'Your favorite team games'} />
+        </div>
+        <div className={classes.mainContainer__secondRow}>
+          <CardContainer title={'Stats'} />
+          <CardContainer title={'Standings'} />
+        </div>
       </div>
     </div>
   );
