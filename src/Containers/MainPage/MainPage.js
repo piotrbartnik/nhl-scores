@@ -11,32 +11,28 @@ const MainPage = props => {
     props.getGamesForGameTiles(moment(new Date()).format('YYYY-MM-DD'));
   }, []);
 
-  const testGames = (
-    <div className={classes.GamesContainer}>
-      {props.gamesForTiles.length > 0
-        ? props.gamesForTiles.map((games, i) => (
-            <ScoreSquare
-              mounted={true}
-              key={i}
-              teamOneId={games[0][2]}
-              teamOne={games[0][0]}
-              scoreOne={games[0][1]}
-              teamTwo={games[1][0]}
-              scoreTwo={games[1][1]}
-              teamTwoId={games[1][2]}
-              venue={games[2]}
-            />
-          ))
-        : null}
-    </div>
-  );
-
+  const testGames =
+    props.gamesForTiles.length > 0
+      ? props.gamesForTiles.map((games, i) => (
+          <ScoreSquare
+            mounted={true}
+            key={i}
+            teamOneId={games[0][2]}
+            teamOne={games[0][0]}
+            scoreOne={games[0][1]}
+            teamTwo={games[1][0]}
+            scoreTwo={games[1][1]}
+            teamTwoId={games[1][2]}
+            venue={games[2]}
+          />
+        ))
+      : null;
   return (
     <div>
       Hello
       <div className={classes.mainContainer}>
         <div className={classes.mainContainer__firstRow}>
-          <CardContainer title={'test00'} content={testGames} />
+          <CardContainer title={'Games today'} content={testGames} />
         </div>
         <div className={classes.mainContainer__secondRow}>
           <CardContainer title={'Stats'} />
