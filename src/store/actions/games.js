@@ -21,7 +21,7 @@ export const fetchGamesForTiles = dateForTiles => {
   return dispatch => {
     dispatch(showLoader(true));
     dispatch(mountedGameTiles(false));
-    fetch(`${apiNhl}${dateForTiles}`)
+    fetch(`${apiNhl}schedule?date=${dateForTiles}`)
       .then(response => {
         return response.json();
       })
@@ -73,7 +73,7 @@ export const fetchNumberOfGamesForSlider = middleDate => {
       ).format('YYYY-MM-DD');
 
       promises.push(
-        fetch(`${apiNhl}${nhlFirstDay}`)
+        fetch(`${apiNhl}schedule?date=${nhlFirstDay}`)
           .then(response => {
             return response.json();
           })
