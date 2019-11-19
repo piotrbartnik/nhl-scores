@@ -2,7 +2,13 @@ import React from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
 class Standings extends Component {
+  componentDidMount() {
+    this.props.getDataForStandingsTable();
+  }
+
   render() {
     const data = [
       {
@@ -38,4 +44,14 @@ class Standings extends Component {
     return <ReactTable data={data} columns={columns} />;
   }
 }
-export default Standings;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getDataForStandingsTable: () => dispatch(actions.fetchStandingsData()),
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Standings);
