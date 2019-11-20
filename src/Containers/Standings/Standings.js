@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTable from 'react-table';
-import 'react-table/react-table.css';
+import classes from './../../../node_modules/react-table/react-table.css';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
@@ -20,28 +20,56 @@ class Standings extends Component {
         },
       },
     ];
-    const columns = [
-      {
-        Header: 'Name',
-        accessor: 'name', // String-based value accessors!
-      },
-      {
-        Header: 'Age',
-        accessor: 'age',
-        Cell: props => <span className="number">{props.value}</span>, // Custom cell components!
-      },
-      {
-        id: 'friendName', // Required because our accessor is not a string
-        Header: 'Friend Name',
-        accessor: d => d.friend.name, // Custom value accessors!
-      },
-      {
-        Header: () => <span>Friend Age</span>, // Custom header components!
-        accessor: 'friend.age',
-      },
-    ];
 
-    return <ReactTable data={data} columns={columns} />;
+    return (
+      <ReactTable
+        data={data}
+        columns={[
+          {
+            Header: 'Name',
+            columns: [
+              // {
+              //   Header: 'Checkbox',
+              //   Cell: row => <input type="checkbox" />,
+              // },
+              {
+                Header: 'First Name',
+                accessor: 'firstName',
+              },
+              {
+                Header: 'Last Name',
+                id: 'lastName',
+                accessor: d => d.lastName,
+              },
+            ],
+          },
+          {
+            Header: 'Info',
+            columns: [
+              {
+                Header: 'Age',
+                accessor: 'age',
+              },
+              {
+                Header: 'Status',
+                accessor: 'status',
+              },
+            ],
+          },
+          {
+            Header: 'Stats',
+            columns: [
+              {
+                Header: 'Visits',
+                accessor: 'visits',
+              },
+            ],
+          },
+        ]}
+        defaultPageSize={10}
+        className={classes['rt-thead']}
+      />
+    );
   }
 }
 

@@ -13,12 +13,19 @@ export const fetchStandingsData = () => {
   return dispatch => {
     fetch(`${apiNhl}standings`)
       .then(response => {
-        console.log('here');
         return response.json();
       })
       .then(data => {
-        console.log(data);
-        dispatch(getDataForStandings(data));
+        const standings = {};
+        data.records.forEach(el => {
+          standings[el.division.name] = [];
+        });
+
+        for (const i in data.records) {
+          standings[data.records[i].division.name] =
+            data.records[i].teamRecords;
+        }
+        dispatch(getDataForStandings(standings));
       });
   };
 };
