@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactTable from 'react-table';
-import classes from './../../../node_modules/react-table/react-table.css';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
@@ -10,64 +9,40 @@ class Standings extends Component {
   }
 
   render() {
-    const data = [
-      {
-        name: 'Tanner Linsley',
-        age: 26,
-        friend: {
-          name: 'Jason Maurer',
-          age: 23,
-        },
-      },
-    ];
+    const data = [];
 
     return (
       <ReactTable
         data={data}
         columns={[
           {
-            Header: 'Name',
-            columns: [
-              // {
-              //   Header: 'Checkbox',
-              //   Cell: row => <input type="checkbox" />,
-              // },
-              {
-                Header: 'First Name',
-                accessor: 'firstName',
-              },
-              {
-                Header: 'Last Name',
-                id: 'lastName',
-                accessor: d => d.lastName,
-              },
-            ],
+            Header: 'Rank',
           },
           {
-            Header: 'Info',
-            columns: [
-              {
-                Header: 'Age',
-                accessor: 'age',
-              },
-              {
-                Header: 'Status',
-                accessor: 'status',
-              },
-            ],
+            Header: 'Team',
           },
           {
-            Header: 'Stats',
-            columns: [
-              {
-                Header: 'Visits',
-                accessor: 'visits',
-              },
-            ],
+            Header: 'GP',
+          },
+          {
+            Header: 'W',
+          },
+          {
+            Header: 'L',
+          },
+          {
+            Header: 'OT',
+          },
+          {
+            Header: 'GS',
+          },
+          {
+            Header: 'GL',
+          },
+          {
+            Header: 'Points',
           },
         ]}
-        defaultPageSize={10}
-        className={classes['rt-thead']}
       />
     );
   }
