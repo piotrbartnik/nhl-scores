@@ -3,6 +3,8 @@ import ReactTable from 'react-table';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import 'react-table/react-table.css';
+import classes from './Standings.module.scss';
 class Standings extends Component {
   componentDidMount() {
     this.props.getDataForStandingsTable();
@@ -13,6 +15,7 @@ class Standings extends Component {
 
     return (
       <ReactTable
+        className={classes.table}
         data={data}
         columns={[
           {
