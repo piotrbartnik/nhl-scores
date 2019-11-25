@@ -19,6 +19,9 @@ class Standings extends Component {
         data={data}
         columns={[
           {
+            Header: 'Conference',
+          },
+          {
             Header: 'Rank',
           },
           {
