@@ -5,6 +5,7 @@ import {
   gamesFromApiSchedule,
   gamesForTileCalendar,
 } from './gameTiles';
+import { standingsData } from './standings';
 import { combineReducers } from 'redux';
 
 const allReducers = combineReducers({
@@ -14,6 +15,7 @@ const allReducers = combineReducers({
   mountGameTiles,
   gamesFromApiSchedule,
   gamesForTileCalendar,
+  standingsData,
 });
 
 export default allReducers;

@@ -1,0 +1,18 @@
+.mainContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &__firstRow {
+    display: flex;
+    width: 100%
+  }
+
+  &__secondRow {
+    display: flex;
+    width: 100%;
+    // flex-wrap: wrap;
+  }
+}
