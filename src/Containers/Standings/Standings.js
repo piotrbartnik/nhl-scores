@@ -43,7 +43,7 @@ class Standings extends Component {
             Header: 'GL',
           },
           {
-            Header: 'Points',
+            Header: 'PTS',
           },
         ]}
       />
