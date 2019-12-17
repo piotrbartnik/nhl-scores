@@ -8,9 +8,16 @@ class Standings extends Component {
   }
 
   render() {
+    console.log(this.props.standingsData);
     return <div>Table will be here</div>;
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    standingsData: state.standingsData.data,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -19,6 +26,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Standings);
