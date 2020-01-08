@@ -9,7 +9,8 @@ class Standings extends Component {
   }
 
   render() {
-    console.log(this.props.standingsData);
+    const dataBefore = this.props.standingsData.Metropolitan;
+    console.log(dataBefore);
     return (
       <div>
         Table will be here
@@ -17,9 +18,13 @@ class Standings extends Component {
           <div className={classes.tableHeader}>
             {Object.keys(this.props.standingsData)[0]}
           </div>
-          {/* <div className={classes.tableStats}>
-            <div>{this.props.standingsData.Metropolitan}</div>
-          </div> */}
+          <div className={classes.tableStats}>
+            <div>
+              {dataBefore
+                ? Object.keys(this.props.standingsData.Metropolitan[0])
+                : 'test'}
+            </div>
+          </div>
         </div>
       </div>
     );
