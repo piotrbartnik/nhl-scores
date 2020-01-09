@@ -19,10 +19,25 @@ class Standings extends Component {
             {Object.keys(this.props.standingsData)[0]}
           </div>
           <div className={classes.tableStats}>
-            <div>
-              {dataBefore
+            <div className={classes.tableTitles}>
+              {/* {dataBefore
                 ? Object.keys(this.props.standingsData.Metropolitan[0])
-                : 'test'}
+                : 'test'} */}
+              <div>GP</div>
+              <div>W</div>
+              <div>L</div>
+              <div>OT</div>
+              <div>PTS</div>
+              <div>ROW</div>
+              <div>SOW</div>
+              <div>SOL</div>
+              <div>HOME</div>
+              <div>AWAY</div>
+              <div>GF</div>
+              <div>GA</div>
+              <div>DIFF</div>
+              <div>L10</div>
+              <div>STRK</div>
             </div>
           </div>
         </div>
