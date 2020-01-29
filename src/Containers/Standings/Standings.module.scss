@@ -1,7 +1,21 @@
-.table {
+.tableContainer {
   border: 1px solid red;
 
-  .rt-table {
+  div {
+    border-bottom: 1px solid blue;
+  }
+}
+
+.tableTitles {
+  display: flex;
+
+  div {
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid red;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%
   }
 }
