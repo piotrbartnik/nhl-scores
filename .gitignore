@@ -2,7 +2,7 @@
 /.pnp
 .pnp.js
 /coverage
-/build
+/dist
 .DS_Store
 .env.local
 .env.development.local
